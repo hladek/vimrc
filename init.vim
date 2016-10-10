@@ -187,7 +187,7 @@ let g:bufferline_echo = 1
 """""""""""""""
 Plug 'tpope/vim-sensible'
 
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 
 
 Plug 'terryma/vim-expand-region'
@@ -231,8 +231,7 @@ let g:unite_abbr_highlight = "Normal"
 
 Plug 'Shougo/neomru.vim'
 " Unite mappings
-nnoremap <Leader>q :Unite buffer file_mru<CR>
-nnoremap <Leader>b :Unite buffer file_mru<CR>
+nnoremap <Leader>q :Unite buffer file file_mru<CR>
 let g:neomru#file_mru_limit=10
 
 Plug 'osyo-manga/unite-quickfix'
@@ -378,12 +377,8 @@ let g:neomake_python_enabled_makers = ['flake8']
 if has("python3")
 Plug 'davidhalter/jedi-vim'
 endif
-
-" Python reference manual search
-" depends on vim-misc
-Plug 'xolox/vim-pyref'
-let g:pyref_mapping = 'K'
-
+Plug 'hynek/vim-python-pep8-indent'
+"Plug 'vim-scripts/indentpython.vim'
 """"""""
 "" Text file, TEX and Markdown
 """"
@@ -425,7 +420,6 @@ Plug 'reedes/vim-wordy'
 " Color scheme
 
 Plug 'nanotech/jellybeans.vim'
-
 call plug#end()
 
  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -437,7 +431,8 @@ call plug#end()
  set encoding=utf8
  " Use Unix as the standard file type
  set ffs=unix,dos,mac
- 
+
+" TODO - error on first start
 colorscheme jellybeans
 set guifont=Monospace\ 13
 set t_Co=256
