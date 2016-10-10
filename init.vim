@@ -189,7 +189,6 @@ Plug 'tpope/vim-sensible'
 
 Plug 'Raimondi/delimitMate'
 
-Plug 'Shougo/vinarise.vim'
 
 Plug 'terryma/vim-expand-region'
 " Expand selection by v (uses text objects)
@@ -198,6 +197,10 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+
+""""""""""""""""
+" Binary file editing
+Plug 'Shougo/vinarise.vim'
 
 """"""""
 " Project root guess
@@ -239,6 +242,7 @@ autocmd QuickfixCmdPost Unite quickfix
 Plug 'Shougo/unite-outline'
 
 nnoremap <Leader>o :Unite -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
+
 """""""""""
 " Marks
 "
@@ -375,7 +379,8 @@ if has("python3")
 Plug 'davidhalter/jedi-vim'
 endif
 
-" zavisi na vim-misc
+" Python reference manual search
+" depends on vim-misc
 Plug 'xolox/vim-pyref'
 let g:pyref_mapping = 'K'
 
@@ -416,6 +421,8 @@ nnoremap <Leader>= gwip
 
 Plug 'reedes/vim-wordy'
 
+"""""""""""
+" Color scheme
 
 Plug 'nanotech/jellybeans.vim'
 
