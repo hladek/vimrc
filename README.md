@@ -52,3 +52,8 @@ Recent Vim with +python3
 <Leader> o : Open file outline
 <Leader> q : Buffer Switch and Recent Files
 <Leader> x : Quickfix in Unite
+
+# Installation
+
+1. Backup your old config
+1. View and run install-nvim.sh
