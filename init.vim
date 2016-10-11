@@ -202,23 +202,6 @@ Plug 'kana/vim-textobj-user'
 " Binary file editing
 Plug 'Shougo/vinarise.vim'
 
-""""""""
-" Project root guess
-"
-Plug 'dbakker/vim-projectroot'
-let g:rootmarkers = ['.git' , 'src' , 'README.md','.gitignore']
-
-""""""""""""""""
-"File Navigation - NerdTree
-"
-
-Plug 'scrooloose/nerdtree'
-
-nnoremap <Leader>f :NERDTreeToggle <C-R>=ProjectRootGuess()<CR><CR>
-let NERDTreeQuitOnOpen = 1
-" Quit NERDTree if it is the only window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 """"""""""""""""
 " Unite
@@ -246,6 +229,7 @@ nnoremap <Leader>o :Unite -vertical -direction=belowright -winwidth=60 -auto-pre
 " Marks
 "
 
+" Shows marks on lines
 Plug 'kshenoy/vim-signature'
 
 """"""""""""
@@ -334,6 +318,8 @@ endif
 " """""
 
 Plug 'tpope/vim-fugitive'
+
+" Shows marks on lines
 Plug 'airblade/vim-gitgutter'
 
 """"""""""""""""""""
@@ -414,6 +400,7 @@ au Filetype bib set makeprg=latexmk\ -f\ -pdf\ %
 "Reformat paragraph endlines
 nnoremap <Leader>= gwip
 
+" For proofreading
 Plug 'reedes/vim-wordy'
 
 """""""""""
