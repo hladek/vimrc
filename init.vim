@@ -393,6 +393,10 @@ augroup lexical
 "  autocmd FileType tex call pencil#init()
 "  autocmd FileType text         call pencil#init()
 augroup END
+
+" z= suggests correction
+" set spelllang=sk Nastavi jazyk na spellovanie
+
 let g:lexical#thesaurus = ['~/.config/nvim/mthesaur.txt',]
 
 au Filetype tex set makeprg=latexmk\ -f\ -pdf\ %
