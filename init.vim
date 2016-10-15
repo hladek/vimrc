@@ -222,6 +222,7 @@ Plug 'Shougo/unite-outline'
 
 nnoremap <Leader>o :Unite -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
 
+Plug 'tsukkee/unite-tag'
 """"""""""
 " Quickfix
 "
@@ -251,7 +252,10 @@ autocmd! BufWritePost * Neomake
 """"""""""""""""
 " Find and replace
 """"""""""""
+
+" <Leader>vv grep for word under cursor
 Plug 'dkprice/vim-easygrep'
+
 
 let g:EasyGrepOpenWindowOnMatch = 0
 let g:EasyGrepCommand = 1
@@ -259,6 +263,7 @@ let g:EasyGrepFilesToExclude = "tags,.aux,.log,.bbl"
 let g:EasyGrepJumpToMatch = 0
 let g:EasyGrepMode = 0
 let g:EasyGrepRoot = "search:.git,.hg,.svn"
+
 """"""
 ""  Tags
 ""
@@ -270,9 +275,12 @@ if executable("ctags")
 
     Plug 'xolox/vim-easytags'
     let g:easytags_async = 1
-    let g:easytags_dynamic_files = 1
     let g:easytags_events = ['BufWritePost']
     let g:easytags_on_cursorhold = 0
+
+    " For tags in working directory
+    let g:easytags_dynamic_files = 2
+    set cpo += "d"
 
 endif
 """""""
