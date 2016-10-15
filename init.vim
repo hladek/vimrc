@@ -188,7 +188,7 @@ let g:bufferline_echo = 1
 Plug 'tpope/vim-sensible'
 
 "Plug 'Raimondi/delimitMate'
-
+Plug 'machakann/vim-highlightedyank'
 
 Plug 'terryma/vim-expand-region'
 " Expand selection by v (uses text objects)
@@ -202,12 +202,8 @@ Plug 'kana/vim-textobj-user'
 " Binary file editing
 Plug 'Shougo/vinarise.vim'
 
-"""""""""""""""""
-" Project Root
 
-Plug 'dbakker/vim-projectroot'
-
-""""""""""""""""
+"""""""""""""""
 " Unite
 "
 
@@ -221,13 +217,22 @@ Plug 'Shougo/neomru.vim'
 nnoremap <Leader>q :Unite buffer file file_mru<CR>
 let g:neomru#file_mru_limit=10
 
-Plug 'osyo-manga/unite-quickfix'
-nnoremap <Leader>x :Unite quickfix<CR>
-autocmd QuickfixCmdPost Unite quickfix
 
 Plug 'Shougo/unite-outline'
 
 nnoremap <Leader>o :Unite -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
+
+""""""""""
+" Quickfix
+"
+Plug 'romainl/vim-qf'
+
+nmap <Leader>x <PLug>QfCtoggle
+
+
+Plug 'osyo-manga/unite-quickfix'
+"nnoremap <Leader>x :Unite quickfix<CR>
+autocmd QuickfixCmdPost Unite quickfix
 
 """""""""""
 " Marks
@@ -252,8 +257,8 @@ let g:EasyGrepOpenWindowOnMatch = 0
 let g:EasyGrepCommand = 1
 let g:EasyGrepFilesToExclude = "tags,.aux,.log,.bbl"
 let g:EasyGrepJumpToMatch = 0
-let g:EasyGrepMode = 1
-
+let g:EasyGrepMode = 0
+let g:EasyGrepRoot = "search:.git,.hg,.svn"
 """"""
 ""  Tags
 ""
