@@ -258,53 +258,6 @@ let g:EasyGrepMode = 1
 Plug 'xolox/vim-misc'
 
 if executable("ctags")
-  ""  Plug 'majutsushi/tagbar'
-
-  ""  nnoremap <Leader>o :TagbarOpenAutoClose<CR>
-
-  ""  let g:tagbar_singleclick = 1
-  ""  let g:tagbar_sort = 0
-  ""  let g:tagbar_type_make = {
-  ""              \ 'kinds':[
-  ""                  \ 'm:macros',
-  ""                  \ 't:targets'
-  ""              \ ]
-  ""  \}
-
-  ""  set tags=./tags;,tags;
-
-  ""  " Add support for markdown files in tagbar.
-  ""  let g:tagbar_type_pandoc = {
-  ""      \ 'ctagstype': 'markdown',
-  ""      \ 'ctagsbin' : '~/.congig/nvim/markdown2ctags.py',
-  ""      \ 'ctagsargs' : '-f - --sort=yes',
-  ""      \ 'kinds' : [
-  ""          \ 's:sections',
-  ""          \ 'i:images'
-  ""      \ ],
-  ""      \ 'sro' : '|',
-  ""      \ 'kind2scope' : {
-  ""          \ 's' : 'section',
-  ""      \ },
-  ""      \ 'sort': 0,
-  ""  \ }
-
-  ""  let g:tagbar_type_tex = {
-  ""      \ 'ctagstype' : 'latex',
-  ""      \ 'kinds' : [
-  ""      \ 'c:chapters',
-  ""      \ 's:sections',
-  ""      \ 'u:subsections',
-  ""      \ 'b:subsubsections',
-  ""      \ 'p:parts',
-  ""      \ 'P:paragraphs',
-  ""      \ 'G:subparagraphs',
-  ""      \ 'i:includes', 
-  ""      \ 'l:labels',
-  ""      \ 'b:bibitems',
-  ""      \ ],
-  ""   \ 'sort' : 0
-  ""  \ }
 
     Plug 'xolox/vim-easytags'
     let g:easytags_async = 1
