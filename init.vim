@@ -202,6 +202,10 @@ Plug 'kana/vim-textobj-user'
 " Binary file editing
 Plug 'Shougo/vinarise.vim'
 
+"""""""""""""""""
+" Project Root
+
+Plug 'dbakker/vim-projectroot'
 
 """"""""""""""""
 " Unite
