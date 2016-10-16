@@ -1,16 +1,4 @@
 
-"" Default clipboard
-set clipboard=unnamed,unnamedplus
-"Ctrl-c to copy in + buffer from visual mode
-vmap <C-c> "+y
-
-"Ctrl-p to paste from the + register in cmd mode
-" nnoremap <C-v> Pi
-
-"Ctrl-p to paste from the + register while editing
- " inoremap <C-v> <ESC>Pi
-
-
 let g:maplocalleader = "\\"
 let g:mapleader = "\<Space>"
 
@@ -53,25 +41,6 @@ set history=700
  set mouse=a
  endif
 
-"""""""""""""""""""
-" Searching
- 
- " Ignore case when searching
- set ignorecase
- " When searching try to be smart about cases
- set smartcase
- " Highlight search results
- set hlsearch
- " Makes search act like search in modern browsers
- set incsearch
- " Don't redraw while executing macros (good performance config)
- set lazyredraw
- " For regular expressions turn magic on
- set magic
- " Show matching brackets when text indicator is over them
- set showmatch
- " How many tenths of a second to blink when matching brackets
- set mat=2
  " No annoying sound on errors
  set noerrorbells
  set novisualbell
@@ -139,11 +108,9 @@ let g:bufferline_rotate = 1
 let g:bufferline_echo = 1
 
 """" """"""""""
-" General Editing
+" Copy and Paste
 """""""""""""""
-Plug 'tpope/vim-sensible'
 
-"Plug 'Raimondi/delimitMate'
 Plug 'machakann/vim-highlightedyank'
 
 Plug 'terryma/vim-expand-region'
@@ -153,6 +120,18 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+
+
+"" Default clipboard
+set clipboard=unnamed,unnamedplus
+"Ctrl-c to copy in + buffer from visual mode
+vmap <C-c> "+y
+
+"Ctrl-p to paste from the + register in cmd mode
+" nnoremap <C-v> Pi
+
+"Ctrl-p to paste from the + register while editing
+ " inoremap <C-v> <ESC>Pi
 
 """"""""""""""""
 " Binary file editing
@@ -211,6 +190,23 @@ autocmd! BufWritePost * Neomake
 """"""""""""""""
 " Find and replace
 """"""""""""
+
+ " Ignore case when searching
+ set ignorecase
+ " When searching try to be smart about cases
+ set smartcase
+ " Highlight search results
+ set hlsearch
+ " Makes search act like search in modern browsers
+ set incsearch
+ " Don't redraw while executing macros (good performance config)
+ set lazyredraw
+ " For regular expressions turn magic on
+ set magic
+ " Show matching brackets when text indicator is over them
+ set showmatch
+ " How many tenths of a second to blink when matching brackets
+ set mat=2
 
 " <Leader>vv grep for word under cursor
 Plug 'dkprice/vim-easygrep'
