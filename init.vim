@@ -20,56 +20,17 @@ tnoremap <Esc> <C-\><C-n>
 endif
 
 
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_python_python_exec = 'python3'
-" let g:syntastic_python_flake8_args = "--ignore=E501"
-" autocmd FileType pandoc nnoremap <buffer> <Space>o :TOC<CR>
-
-" let g:pandoc#formatting#mode = 'hA'
-" let g:pandoc#formatting#textwidth = 80
-" let g:pandoc#formatting#smart_autoformat_on_cursormoved = 1
-" let g:pandoc#modules#disabled = ["folding"]
-
-" set wrap "Wrap lines
-"let g:pencil#wrapModeDefault = 'soft'
-
-
 nnoremap <Leader>w :w<CR>
 vnoremap <C-s> <ESC>wi
 nnoremap <C-s> w
 
 
-" Smart way to move between windows
-" map <C-j> <C-W>j
-" map <C-k> <C-W>k
-" map <C-h> <C-W>h
-" map <C-l> <C-W>l
-
-" Jump after paste
-" vnoremap <silent> y y`]
-" vnoremap <silent> p p`]
-" nnoremap <silent> p p`]
 
 
 """"""""""""" key map timeouts
 "
 ""
 set notimeout
-"set ttimeout
-"
-" personally, I find a tenth of a second to work well for key code
-" timeouts. If you experience problems and have a slow terminal or network
-" connection, set it higher.  If you don't set ttimeoutlen, the value for
-"
-" timeoutlent (default: 1000 = 1 second, which is sluggish) is used.
-"
-"set ttimeoutlen=400
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" => VIM user interface
- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 set splitbelow
@@ -133,12 +94,7 @@ set tabstop=4
 set autoindent "Auto indent
 set smartindent "Smart indent
 
-" Komenty v Pythone
-inoremap # X#
 
-" Pre quickfix do toho isteho okna
-set switchbuf=useopen
-set hidden
 
 set completeopt=menu
 set laststatus=2
@@ -230,6 +186,9 @@ Plug 'romainl/vim-qf'
 
 nmap <Leader>x <PLug>QfCtoggle
 
+" Pre quickfix do toho isteho okna
+set switchbuf=useopen
+set hidden
 
 Plug 'osyo-manga/unite-quickfix'
 "nnoremap <Leader>x :Unite quickfix<CR>
@@ -320,6 +279,9 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Python
 " """""
 
+" Komenty v Pythone
+inoremap # X#
+
 let g:neomake_python_flake8_maker = {
     \ 'args': ['--ignore=E221,E231,E241,E272,E251,W702,E203,E201,E202,E501',  '--format=default'],
     \ 'errorformat':
@@ -335,6 +297,8 @@ Plug 'davidhalter/jedi-vim'
 endif
 Plug 'hynek/vim-python-pep8-indent'
 "Plug 'vim-scripts/indentpython.vim'
+
+
 """"""""
 "" Text file, TEX and Markdown
 """"
