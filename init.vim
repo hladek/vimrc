@@ -22,6 +22,23 @@ if has('autocmd')
   filetype plugin indent on
 endif
 
+ """""""""""""""""""""
+ " Mouse
+
+ " In many terminal emulators the mouse works just fine, thus enable it.
+ if has('mouse')
+ set mouse=a
+ endif
+
+""""""""""""" key map timeouts
+"
+""
+" Allow for mappings including `Esc`, while preserving
+" zero timeout after pressing it manually.
+set ttimeout
+set ttimeoutlen=100
+set notimeout
+
 """"""""""""""""""""
 " Windows
 """"""""""
@@ -101,22 +118,6 @@ if !isdirectory(expand(s:dir))
   call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
 end
 
- """""""""""""""""""""
- " Mouse
-
- " In many terminal emulators the mouse works just fine, thus enable it.
- if has('mouse')
- set mouse=a
- endif
-
-""""""""""""" key map timeouts
-"
-""
-" Allow for mappings including `Esc`, while preserving
-" zero timeout after pressing it manually.
-set ttimeout
-set ttimeoutlen=100
-set notimeout
 
 
 """"""""""""""
@@ -170,53 +171,17 @@ if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j
 endif
 
-
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" `Ctrl-U` in insert mode deletes a lot. Use `Ctrl-G` u to first break undo,
-" so that you can undo `Ctrl-U` without undoing what you typed before it.
-inoremap <C-U> <C-G>u<C-U>
-
-" Allow easy navigation between wrapped lines.
-vmap j gj
-vmap k gk
-nmap j gj
-nmap k gk
 
 """"""""""""""""
 " Binary file editing
 Plug 'Shougo/vinarise.vim'
-""""""""""
-"" Status line
-"""""
 
-" Show mode in statusbar, not separately.
-set noshowmode
-" Always show window statuses, even if there's only one.
-set laststatus=2
 
-" Show the line and column number of the cursor position.
-set ruler
-
-" Show the size of block one selected in visual mode.
-set showcmd
-
-Plug 'vim-airline/vim-airline'
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
-"let g:airline_section_x = '%{PencilMode()}'
-
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-Plug 'bling/vim-bufferline'
-let g:bufferline_show_bufnr = 0
-let g:bufferline_rotate = 1
-let g:bufferline_echo = 1
 
 """" """"""""""
 " Copy and Paste
@@ -252,15 +217,13 @@ vmap <C-v> <Plug>(expand_region_shrink)
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 
-
 "" Default clipboard
 set clipboard=unnamed,unnamedplus
-
-
 
 """""""""""""""
 " Buffer and File switch
 "
+Plug 'ctrlpvim/ctrlp.vim'
 
 " If opening buffer, search first in opened windows.
 set switchbuf=usetab
@@ -277,12 +240,12 @@ Plug 'Shougo/neomru.vim'
 nnoremap <Leader>q :Unite buffer file file_mru<CR>
 let g:neomru#file_mru_limit=10
 
-
 Plug 'Shougo/unite-outline'
 
 nnoremap <Leader>o :Unite -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
 
 Plug 'tsukkee/unite-tag'
+
 """"""""""
 " Quickfix
 "
@@ -392,6 +355,7 @@ if executable("ctags")
 
     " For tags in working directory
     let g:easytags_dynamic_files = 2
+    set tags = "./tags"
     set cpo += "d"
 
 endif
@@ -507,6 +471,34 @@ nnoremap <Leader>= gwip
 " For proofreading
 Plug 'reedes/vim-wordy'
 
+""""""""""
+"" Status line
+"""""
+
+" Show mode in statusbar, not separately.
+set noshowmode
+" Always show window statuses, even if there's only one.
+set laststatus=2
+
+" Show the line and column number of the cursor position.
+set ruler
+
+" Show the size of block one selected in visual mode.
+set showcmd
+
+Plug 'vim-airline/vim-airline'
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
+"let g:airline_section_x = '%{PencilMode()}'
+
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+Plug 'bling/vim-bufferline'
+let g:bufferline_show_bufnr = 0
+let g:bufferline_rotate = 1
+let g:bufferline_echo = 1
 """""""""""
 " View
 
