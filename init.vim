@@ -223,7 +223,7 @@ autocmd QuickfixCmdPost Unite quickfix
 
 Plug 'Shougo/unite-outline'
 
-nnoremap <Leader>o :Unite -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
+nnoremap <Leader>o :Unite -start-insert -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
 
 """""""""""
 " Marks
