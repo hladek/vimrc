@@ -369,22 +369,22 @@ if executable("ctags")
   ""      \ 'sort': 0,
   ""  \ }
 
-  ""  let g:tagbar_type_tex = {
-  ""      \ 'ctagstype' : 'latex',
-  ""      \ 'kinds' : [
-  ""      \ 'c:chapters',
-  ""      \ 's:sections',
-  ""      \ 'u:subsections',
-  ""      \ 'b:subsubsections',
-  ""      \ 'p:parts',
-  ""      \ 'P:paragraphs',
-  ""      \ 'G:subparagraphs',
-  ""      \ 'i:includes', 
-  ""      \ 'l:labels',
-  ""      \ 'b:bibitems',
-  ""      \ ],
-  ""   \ 'sort' : 0
-  ""  \ }
+    let g:tagbar_type_tex = {
+        \ 'ctagstype' : 'latex',
+        \ 'kinds' : [
+        \ 'c:chapters',
+        \ 's:sections',
+        \ 'u:subsections',
+        \ 'b:subsubsections',
+        \ 'p:parts',
+        \ 'P:paragraphs',
+        \ 'G:subparagraphs',
+        \ 'i:includes', 
+        \ 'l:labels',
+        \ 'b:bibitems',
+        \ ],
+     \ 'sort' : 0
+    \ }
 
 
     Plug 'xolox/vim-easytags'
