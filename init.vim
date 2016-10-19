@@ -136,8 +136,6 @@ set autoindent
 set smarttab
  " Use spaces instead of tabs
 set expandtab
-" Disable octal format for number processing.
-set nrformats-=octal
 
 
 call plug#begin()
@@ -240,11 +238,6 @@ Plug 'Shougo/neomru.vim'
 nnoremap <Leader>q :Unite buffer file file_mru<CR>
 let g:neomru#file_mru_limit=10
 
-Plug 'Shougo/unite-outline'
-
-nnoremap <Leader>o :Unite -start-insert -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
-
-Plug 'tsukkee/unite-tag'
 
 """"""""""
 " Quickfix
@@ -347,6 +340,52 @@ set complete-=i
 Plug 'xolox/vim-misc'
 
 if executable("ctags")
+    Plug 'majutsushi/tagbar'
+    nnoremap <Leader>o :TagbarOpenAutoClose<CR>
+
+    let g:tagbar_singleclick = 1
+    let g:tagbar_sort = 0
+    let g:tagbar_type_make = {
+                \ 'kinds':[
+                    \ 'm:macros',
+                    \ 't:targets'
+                \ ]
+    \}
+
+
+  ""  " Add support for markdown files in tagbar.
+  ""  let g:tagbar_type_pandoc = {
+  ""      \ 'ctagstype': 'markdown',
+  ""      \ 'ctagsbin' : '~/.congig/nvim/markdown2ctags.py',
+  ""      \ 'ctagsargs' : '-f - --sort=yes',
+  ""      \ 'kinds' : [
+  ""          \ 's:sections',
+  ""          \ 'i:images'
+  ""      \ ],
+  ""      \ 'sro' : '|',
+  ""      \ 'kind2scope' : {
+  ""          \ 's' : 'section',
+  ""      \ },
+  ""      \ 'sort': 0,
+  ""  \ }
+
+  ""  let g:tagbar_type_tex = {
+  ""      \ 'ctagstype' : 'latex',
+  ""      \ 'kinds' : [
+  ""      \ 'c:chapters',
+  ""      \ 's:sections',
+  ""      \ 'u:subsections',
+  ""      \ 'b:subsubsections',
+  ""      \ 'p:parts',
+  ""      \ 'P:paragraphs',
+  ""      \ 'G:subparagraphs',
+  ""      \ 'i:includes', 
+  ""      \ 'l:labels',
+  ""      \ 'b:bibitems',
+  ""      \ ],
+  ""   \ 'sort' : 0
+  ""  \ }
+
 
     Plug 'xolox/vim-easytags'
     let g:easytags_async = 1
@@ -359,6 +398,18 @@ if executable("ctags")
     set cpo += "d"
 
 endif
+
+
+nnoremap <Leader>t :CtrlPBufTag<CR>
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:100'
+
+
+Plug 'Shougo/unite-outline'
+
+"nnoremap <Leader>o :Unite -start-insert -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
+
+Plug 'tsukkee/unite-tag'
+
 """""""
 " Git
 " """""
@@ -389,17 +440,18 @@ set wildmenu
 
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 if has("nvim")
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" let g:deoplete#enable_at_startup = 1
 let g:clang_verbose_pmenu = 1
 let g:clang_compilation_database = "./"
 let g:clang_diagsopt = ''   " <- disable diagnostics
 autocmd CompleteDone * pclose
 endif
 
-Plug 'shougo/neoinclude.vim'
+" Plug 'shougo/neoinclude.vim'
 
 
 """"""""""""""
