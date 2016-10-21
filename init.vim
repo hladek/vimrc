@@ -143,6 +143,9 @@ call plug#begin()
 """"""""""""""""""""""
 " Editing
 ""
+
+Plug 'tpope/vim-unimpaired'
+
 " Do not fold by default. But if, do it up to 3 levels.
 set foldmethod=indent
 set foldnestmax=3
@@ -228,16 +231,17 @@ set switchbuf=usetab
 
 " Hide buffers instead of asking if to save them.
 set hidden
-Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
 
 " let g:unite_data_directory = "~/tmp"
-let g:unite_abbr_highlight = "Normal"
+" let g:unite_abbr_highlight = "Normal"
 
-Plug 'Shougo/neomru.vim'
+" Plug 'Shougo/neomru.vim'
 " Unite mappings
-nnoremap <Leader>q :Unite buffer file file_mru<CR>
-let g:neomru#file_mru_limit=10
+" nnoremap <Leader>q :Unite buffer file file_mru<CR>
+" let g:neomru#file_mru_limit=10
 
+nnoremap <Leader>q :CtrlPBuffer<CR>
 
 """"""""""
 " Quickfix
@@ -252,7 +256,7 @@ set hidden
 
 Plug 'osyo-manga/unite-quickfix'
 "nnoremap <Leader>x :Unite quickfix<CR>
-autocmd QuickfixCmdPost Unite quickfix
+" autocmd QuickfixCmdPost Unite quickfix
 
 
 """"""""""""
@@ -401,7 +405,7 @@ endif
 
 
 nnoremap <Leader>t :CtrlPBufTag<CR>
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:100'
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:100'
 
 
 Plug 'Shougo/unite-outline'
@@ -514,6 +518,7 @@ augroup lexical
 "  autocmd FileType text         call pencil#init()
 augroup END
 
+" [s next bad word
 " z= suggests correction
 " set spelllang=sk Nastavi jazyk na spellovanie
 
