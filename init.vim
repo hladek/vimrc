@@ -224,24 +224,24 @@ set clipboard=unnamed,unnamedplus
 """""""""""""""
 " Buffer and File switch
 "
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 
 " If opening buffer, search first in opened windows.
 set switchbuf=usetab
 
 " Hide buffers instead of asking if to save them.
 set hidden
-" Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim'
 
-" let g:unite_data_directory = "~/tmp"
-" let g:unite_abbr_highlight = "Normal"
+Plug 'Shougo/denite.nvim'
+let g:unite_data_directory = "~/tmp"
+let g:unite_abbr_highlight = "Normal"
 
-" Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neomru.vim'
 " Unite mappings
-" nnoremap <Leader>q :Unite buffer file file_mru<CR>
-" let g:neomru#file_mru_limit=10
+nnoremap <Leader>q :Unite buffer file file_mru<CR>
+let g:neomru#file_mru_limit=10
 
-nnoremap <Leader>q :CtrlPBuffer<CR>
 
 """"""""""
 " Quickfix
@@ -254,7 +254,7 @@ nmap <Leader>x <PLug>QfCtoggle
 set switchbuf=useopen
 set hidden
 
-Plug 'osyo-manga/unite-quickfix'
+" Plug 'osyo-manga/unite-quickfix'
 "nnoremap <Leader>x :Unite quickfix<CR>
 " autocmd QuickfixCmdPost Unite quickfix
 
@@ -404,15 +404,15 @@ if executable("ctags")
 endif
 
 
-nnoremap <Leader>t :CtrlPBufTag<CR>
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:100'
+" nnoremap <Leader>t :CtrlPBufTag<CR>
+" let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:100'
 
 
-Plug 'Shougo/unite-outline'
+" Plug 'Shougo/unite-outline'
 
 "nnoremap <Leader>o :Unite -start-insert -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
 
-Plug 'tsukkee/unite-tag'
+" Plug 'tsukkee/unite-tag'
 
 """""""
 " Git
