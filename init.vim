@@ -144,6 +144,12 @@ call plug#begin()
 " Editing
 ""
 
+Plug 'tpope/vim-repeat'
+
+" finds next character with fFtT
+
+Plug 'dahu/vim-fanfingtastic'
+
 Plug 'tpope/vim-unimpaired'
 
 " Do not fold by default. But if, do it up to 3 levels.
