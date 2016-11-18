@@ -477,7 +477,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Komenty v Pythone
 inoremap # X#
-
+if executable("flake8")
 let g:neomake_python_flake8_maker = {
     \ 'args': ['--ignore=E221,E231,E241,E272,E251,W702,E203,E201,E202,E501',  '--format=default'],
     \ 'errorformat':
@@ -487,7 +487,7 @@ let g:neomake_python_flake8_maker = {
         \ '%-G%.%#',
     \ }
 let g:neomake_python_enabled_makers = ['flake8']
-
+endif
 if has("python3")
 Plug 'davidhalter/jedi-vim'
 endif
