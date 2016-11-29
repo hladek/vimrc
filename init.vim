@@ -279,9 +279,6 @@ autocmd! BufWritePost * Neomake
 " Find and replace
 """"""""""""
 
-" Highlight on substitute s/something
-Plug 'osyo-manga/vim-over'
-
 " Use Silver Searcher for CtrlP plugin (if available)
 " Fallback to git ls-files for fast listing.
 " Because we use fast strategies, disable caching.
