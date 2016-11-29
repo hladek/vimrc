@@ -152,6 +152,9 @@ Plug 'dahu/vim-fanfingtastic'
 
 Plug 'tpope/vim-unimpaired'
 
+" Display undotree by UndotreeToggle
+Plug 'mbbill/undotree'
+
 " Do not fold by default. But if, do it up to 3 levels.
 set foldmethod=indent
 set foldnestmax=3
@@ -275,6 +278,9 @@ autocmd! BufWritePost * Neomake
 """"""""""""""""
 " Find and replace
 """"""""""""
+
+" Highlight on substitute s/something
+Plug 'osyo-manga/vim-over'
 
 " Use Silver Searcher for CtrlP plugin (if available)
 " Fallback to git ls-files for fast listing.
