@@ -444,15 +444,16 @@ set wildmenu
 
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 if has("nvim")
 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
 let g:clang_verbose_pmenu = 1
 let g:clang_compilation_database = "./"
 let g:clang_diagsopt = ''   " <- disable diagnostics
 autocmd CompleteDone * pclose
+else
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
 " Plug 'shougo/neoinclude.vim'
