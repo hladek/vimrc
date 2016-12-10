@@ -214,6 +214,14 @@ vmap <C-c> "+y
 " Y yanks from the cursor to the end of line as expected. See :help Y.
 nnoremap Y y$
 
+" http://stackoverflow.com/questions/2861627/paste-in-insert-mode
+set pastetoggle=<F10>
+inoremap <C-v> <F10><C-r>+<F10>
+
+" And this for yanking visual selection into clipboard with Ctrlc:
+
+vnoremap <C-c> "+y
+
 " Blinks on yw, yy ...
 Plug 'machakann/vim-highlightedyank'
 
@@ -459,6 +467,7 @@ set wildmode=longest,full
 if has("nvim")
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'shougo/neoinclude.vim'
+
 let g:deoplete#enable_at_startup = 1
 let g:clang_verbose_pmenu = 1
 let g:clang_compilation_database = "./"
