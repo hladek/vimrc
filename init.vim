@@ -144,7 +144,16 @@ call plug#begin()
 " Editing
 ""
 
+Plug 'tpope/vim-repeat'
+
+" finds next character with fFtT
+
+Plug 'dahu/vim-fanfingtastic'
+
 Plug 'tpope/vim-unimpaired'
+
+" Display undotree by UndotreeToggle
+Plug 'mbbill/undotree'
 
 " Do not fold by default. But if, do it up to 3 levels.
 set foldmethod=indent
@@ -269,6 +278,9 @@ autocmd! BufWritePost * Neomake
 """"""""""""""""
 " Find and replace
 """"""""""""
+
+" Highlight on substitute s/something
+Plug 'osyo-manga/vim-over'
 
 " Use Silver Searcher for CtrlP plugin (if available)
 " Fallback to git ls-files for fast listing.
@@ -445,8 +457,8 @@ set wildmenu
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
 if has("nvim")
-
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'shougo/neoinclude.vim'
 let g:deoplete#enable_at_startup = 1
 let g:clang_verbose_pmenu = 1
 let g:clang_compilation_database = "./"
@@ -456,7 +468,6 @@ else
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
-" Plug 'shougo/neoinclude.vim'
 
 
 """"""""""""""
@@ -472,7 +483,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Komenty v Pythone
 inoremap # X#
-
+if executable("flake8")
 let g:neomake_python_flake8_maker = {
     \ 'args': ['--ignore=E221,E231,E241,E272,E251,W702,E203,E201,E202,E501',  '--format=default'],
     \ 'errorformat':
@@ -482,7 +493,7 @@ let g:neomake_python_flake8_maker = {
         \ '%-G%.%#',
     \ }
 let g:neomake_python_enabled_makers = ['flake8']
-
+endif
 if has("python3")
 Plug 'davidhalter/jedi-vim'
 endif
