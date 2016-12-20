@@ -244,7 +244,7 @@ Plug 'kana/vim-textobj-user'
 "    im: inside math environment. Recognizes $, \[ ... \], \( ... \). Usable as vim, cim, etc.
 "    ie: inside environment. Recognizes matching \begin and \end tags.
 "    %: jump around between matched begin/end blocks. If the current line does not have one, use default % motion. Works in visual mode.
-Bundle 'gibiansky/vim-latex-objects'
+Plug 'gibiansky/vim-latex-objects'
 
 """""""""""""""
 " Buffer and File switch
