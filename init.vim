@@ -245,6 +245,17 @@ Plug 'kana/vim-textobj-user'
 "    ie: inside environment. Recognizes matching \begin and \end tags.
 "    %: jump around between matched begin/end blocks. If the current line does not have one, use default % motion. Works in visual mode.
 Plug 'gibiansky/vim-latex-objects'
+" i – the current indentation level and the line above
+" ii – the current indentation level excluding the line above 
+Plug 'michaeljsmith/vim-indent-object'
+
+
+" Make a simple "search" text object.
+" http://vim.wikia.com/wiki/Copy_or_change_search_hit
+" It allows for replacing search matches with cs and then /././.
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
 
 """""""""""""""
 " Buffer and File switch
@@ -334,12 +345,6 @@ set ignorecase
 " Don't ignore case when search has capital letter
 " (although also don't ignore case by default).
 set smartcase
-" Make a simple "search" text object.
-" http://vim.wikia.com/wiki/Copy_or_change_search_hit
-" It allows for replacing search matches with cs and then /././.
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
  " Ignore case when searching
  set ignorecase
  " When searching try to be smart about cases
