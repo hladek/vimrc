@@ -233,7 +233,9 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 "" Default clipboard
-set clipboard=unnamed,unnamedplus
+if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+    set clipboard=unnamed,unnamedplus
+endif
 
 
 """"
