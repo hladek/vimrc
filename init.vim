@@ -269,7 +269,7 @@ set switchbuf=usetab
 set hidden
 Plug 'Shougo/unite.vim'
 
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:unite_data_directory = "~/tmp"
 let g:unite_abbr_highlight = "Normal"
 
