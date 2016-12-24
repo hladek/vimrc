@@ -582,8 +582,10 @@ set ruler
 set showcmd
 
 Plug 'vim-airline/vim-airline'
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
+Plug 'vim-airline/vim-airline-themes'
+
+"let g:airline_powerline_fonts = 1
+let g:airline_theme='jellybeans'
 "let g:airline_section_x = '%{PencilMode()}'
 
 set statusline+=%#warningmsg#
@@ -591,9 +593,11 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 
 Plug 'bling/vim-bufferline'
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
 let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 1
-let g:bufferline_echo = 1
+let g:bufferline_echo = 0
 """""""""""
 " View
 
