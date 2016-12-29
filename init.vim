@@ -334,6 +334,10 @@ noremap N Nzz
 " Keep flags when repeating last substitute command.
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+
+" Search live preview
+set inccommand=split
+
 " Enable search highlighting.
 set hlsearch
 
