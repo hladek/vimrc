@@ -454,8 +454,14 @@ set wildmenu
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
 if has("nvim")
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'shougo/neoinclude.vim'
+" Plug 'shougo/neoinclude.vim',{ 'tag': '*' }
+
+
+
+
+
 let g:deoplete#enable_at_startup = 1
 let g:clang_verbose_pmenu = 1
 let g:clang_compilation_database = "./"
