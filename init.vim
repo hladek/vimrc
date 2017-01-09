@@ -214,6 +214,14 @@ vmap <C-c> "+y
 " Y yanks from the cursor to the end of line as expected. See :help Y.
 nnoremap Y y$
 
+" http://stackoverflow.com/questions/2861627/paste-in-insert-mode
+set pastetoggle=<F10>
+inoremap <C-v> <F10><C-r>+<F10>
+
+" And this for yanking visual selection into clipboard with Ctrlc:
+
+vnoremap <C-c> "+y
+
 " Blinks on yw, yy ...
 Plug 'machakann/vim-highlightedyank'
 
@@ -224,11 +232,32 @@ Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+"" Default clipboard
+if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+    set clipboard=unnamed,unnamedplus
+endif
+
+
+""""
+" Text Objects
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
+" Latex
+"    im: inside math environment. Recognizes $, \[ ... \], \( ... \). Usable as vim, cim, etc.
+"    ie: inside environment. Recognizes matching \begin and \end tags.
+"    %: jump around between matched begin/end blocks. If the current line does not have one, use default % motion. Works in visual mode.
+Plug 'gibiansky/vim-latex-objects'
+" i – the current indentation level and the line above
+" ii – the current indentation level excluding the line above 
+Plug 'michaeljsmith/vim-indent-object'
 
-"" Default clipboard
-set clipboard=unnamed,unnamedplus
+
+" Make a simple "search" text object.
+" http://vim.wikia.com/wiki/Copy_or_change_search_hit
+" It allows for replacing search matches with cs and then /././.
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
 
 """""""""""""""
 " Buffer and File switch
@@ -242,7 +271,7 @@ set switchbuf=usetab
 set hidden
 Plug 'Shougo/unite.vim'
 
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:unite_data_directory = "~/tmp"
 let g:unite_abbr_highlight = "Normal"
 
@@ -302,6 +331,10 @@ noremap N Nzz
 " Keep flags when repeating last substitute command.
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+
+" Search live preview
+set inccommand=split
+
 " Enable search highlighting.
 set hlsearch
 
@@ -315,12 +348,6 @@ set ignorecase
 " Don't ignore case when search has capital letter
 " (although also don't ignore case by default).
 set smartcase
-" Make a simple "search" text object.
-" http://vim.wikia.com/wiki/Copy_or_change_search_hit
-" It allows for replacing search matches with cs and then /././.
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
  " Ignore case when searching
  set ignorecase
  " When searching try to be smart about cases
@@ -402,7 +429,7 @@ if executable("ctags")
 
     Plug 'xolox/vim-easytags'
     let g:easytags_async = 1
-    let g:easytags_events = ['BufWritePost']
+    let g:easytags_events = ['BufWritePost','BufReadPost']
     let g:easytags_on_cursorhold = 0
 
     " For tags in working directory
@@ -456,10 +483,7 @@ set wildmode=longest,full
 if has("nvim")
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'shougo/neoinclude.vim',{ 'tag': '*' }
-
-
-
+Plug 'shougo/neoinclude.vim',{ 'tag': '*' }
 
 
 let g:deoplete#enable_at_startup = 1
@@ -563,8 +587,10 @@ set ruler
 set showcmd
 
 Plug 'vim-airline/vim-airline'
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
+Plug 'vim-airline/vim-airline-themes'
+
+"let g:airline_powerline_fonts = 1
+let g:airline_theme='jellybeans'
 "let g:airline_section_x = '%{PencilMode()}'
 
 set statusline+=%#warningmsg#
@@ -572,9 +598,11 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 
 Plug 'bling/vim-bufferline'
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
 let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 1
-let g:bufferline_echo = 1
+let g:bufferline_echo = 0
 """""""""""
 " View
 
