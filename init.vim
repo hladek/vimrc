@@ -291,8 +291,9 @@ let g:neomru#file_mru_limit=10
 "
 Plug 'romainl/vim-qf'
 
-nmap <Leader>x <PLug>QfCtoggle
+nmap <Leader>x <Plug>QfCtoggle
 
+nmap <Leader>l <Plug>QfLtoggle
 " Pre quickfix do toho isteho okna
 set switchbuf=useopen
 set hidden
