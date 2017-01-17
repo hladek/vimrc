@@ -1,4 +1,5 @@
 
+call plug#begin()
 " vimrc.vim - Extension of vim-sensible plugin with less sensible defaults.
 " Maintainer:   Adam Stankiewicz <sheerun@sher.pl>
 " Version:      2.0
@@ -118,8 +119,13 @@ if !isdirectory(expand(s:dir))
   call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
 end
 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 17
 
-
+nnoremap <Leader>f :Vexplore<CR>
 """"""""""""""
 " Indent
 ""
@@ -138,7 +144,6 @@ set smarttab
 set expandtab
 
 
-call plug#begin()
 
 """"""""""""""""""""""
 " Editing
@@ -483,7 +488,7 @@ set wildmode=longest,full
 if has("nvim")
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'shougo/neoinclude.vim',{ 'tag': '*' }
+Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
 
 
 let g:deoplete#enable_at_startup = 1
