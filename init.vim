@@ -353,13 +353,15 @@ set smartcase
 " <Leader>vv grep for word under cursor
 Plug 'dkprice/vim-easygrep'
 
-
 let g:EasyGrepOpenWindowOnMatch = 0
 let g:EasyGrepCommand = 1
 let g:EasyGrepFilesToExclude = "tags,.aux,.log,.bbl"
 let g:EasyGrepJumpToMatch = 0
 let g:EasyGrepMode = 0
 let g:EasyGrepRoot = "search:.git,.hg,.svn"
+
+" * # search for visual selection
+Plug 'bronson/vim-visual-star-search'
 
 """"""
 ""  Tags
