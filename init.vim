@@ -252,7 +252,6 @@ omap s :normal vs<CR>
 """""""""""""""
 " Buffer and File switch
 "
-" Plug 'ctrlpvim/ctrlp.vim'
 
 " If opening buffer, search first in opened windows.
 set switchbuf=usetab
@@ -290,23 +289,11 @@ autocmd! BufWritePost * Neomake
 " Find and replace
 """"""""""""
 
-" Use Silver Searcher for CtrlP plugin (if available)
 " Fallback to git ls-files for fast listing.
-" Because we use fast strategies, disable caching.
-let g:ctrlp_use_caching = 0
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'cd %s && ag -l --nocolor -g ""'
-else
-  let g:ctrlp_user_command = ['.git',
-    \ 'cd %s && git ls-files . -co --exclude-standard',
-    \ 'find %s -type f' ]
 endif
 
-" Accept CtrlP selections also with <Space>
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': ['<Space>', '<CR>', '<2-LeftMouse>'],
-  \ }
 " Auto center on matched string.
 noremap n nzz
 noremap N Nzz
