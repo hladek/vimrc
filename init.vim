@@ -259,16 +259,10 @@ set switchbuf=usetab
 
 " Hide buffers instead of asking if to save them.
 set hidden
-Plug 'Shougo/unite.vim'
 
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:unite_data_directory = "~/tmp"
-let g:unite_abbr_highlight = "Normal"
+nnoremap <Leader>q :Denite buffer<CR>
 
-Plug 'Shougo/neomru.vim'
-" Unite mappings
-nnoremap <Leader>q :Unite buffer file file_mru<CR>
-let g:neomru#file_mru_limit=10
 
 
 """"""""""
@@ -283,9 +277,6 @@ nmap <Leader>l <Plug>QfLtoggle
 set switchbuf=useopen
 set hidden
 
-" Plug 'osyo-manga/unite-quickfix'
-"nnoremap <Leader>x :Unite quickfix<CR>
-" autocmd QuickfixCmdPost Unite quickfix
 
 
 """"""""""""
@@ -431,17 +422,6 @@ if executable("ctags")
     set cpo += "d"
 
 endif
-
-
-" nnoremap <Leader>t :CtrlPBufTag<CR>
-" let g:ctrlp_match_window = 'top,order:ttb,min:1,max:10,results:100'
-
-
-" Plug 'Shougo/unite-outline'
-
-"nnoremap <Leader>o :Unite -start-insert -vertical -direction=belowright -winwidth=60 -auto-preview outline<CR>
-
-" Plug 'tsukkee/unite-tag'
 
 """""""
 " Git
