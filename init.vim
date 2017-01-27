@@ -339,8 +339,29 @@ let g:EasyGrepMode = 0
 let g:EasyGrepRoot = "search:.git,.hg,.svn"
 
 " * # search for visual selection
-Plug 'bronson/vim-visual-star-search'
+"Plug 'bronson/vim-visual-star-search'
+function! Esca(str)
+    let res = escape(a:str, '\*')
+    let res = substitute(res, '\n', '\\n', 'g')
+    let res = substitute(res, '\[', '\\[', 'g')
+    let res = substitute(res, '\~', '\\~', 'g')
+    return res
+endfunction
 
+function! VStar()
+    let temp = @"
+    normal! gvy
+    let res = Esca(@")
+    let @" = temp
+    return res
+endfunction
+
+xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
+xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
+xnoremap / <ESC>/<C-R>=VStar()<CR>
+xnoremap R <ESC>:<C-U>%s <C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
+xnoremap <C-g> <ESC>:<C-U>vimgrep <C-R>=VStar()<CR> ./**
+nnoremap <C-g> :<C-U>vimgrep <C-R><C-W> ./**
 """"""
 ""  Tags
 ""
@@ -522,6 +543,7 @@ augroup END
 " set spelllang=sk Nastavi jazyk na spellovanie
 
 let g:lexical#thesaurus = ['~/.config/nvim/mthesaur.txt',]
+let g:lexical#thesaurus_key = '<leader>t'
 
 au Filetype tex set makeprg=latexmk\ -f\ -pdf\ %
 au Filetype bib set makeprg=latexmk\ -f\ -pdf\ %
