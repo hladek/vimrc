@@ -181,6 +181,10 @@ endif
 " Binary file editing
 Plug 'Shougo/vinarise.vim'
 
+""""""""
+" REST console in REST filetype
+":set ft=rest
+Plug 'diepm/vim-rest-console'
 
 
 """" """"""""""
@@ -353,7 +357,7 @@ endfunction
 xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
 xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
 xnoremap / <ESC>/<C-R>=VStar()<CR>
-xnoremap R <ESC>:<C-U>%s <C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
+xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
 xnoremap <C-g> <ESC>:<C-U>vimgrep <C-R>=VStar()<CR> ./**
 nnoremap <C-g> :<C-U>vimgrep <C-R><C-W> ./**
 """"""
