@@ -104,13 +104,17 @@ if !isdirectory(expand(s:dir))
   call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
 end
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 17
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 17
+"
+"nnoremap <Leader>f :Vexplore<CR>
 
-nnoremap <Leader>f :Vexplore<CR>
+Plug 'scrooloose/nerdtree'
+
+nnoremap <Leader>f :NERDTree<CR>
 """"""""""""""
 " Indent
 ""
@@ -354,12 +358,19 @@ function! VStar()
     return res
 endfunction
 
+
+" Grep operator
+nmap gs  <plug>(GrepperOperator)
+xmap gs  <plug>(GrepperOperator)
+
+
+nnoremap <Leader>8 <ESC>:<C-U>Grepper -noprompt -cword<CR>
 xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
 xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
 xnoremap / <ESC>/<C-R>=VStar()<CR>
+xmap <Leader>/ <plug>(GrepperOperator)
 xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
-xnoremap <C-g> <ESC>:<C-U>vimgrep <C-R>=VStar()<CR> ./**
-nnoremap <C-g> :<C-U>vimgrep <C-R><C-W> ./**
+
 """"""
 ""  Tags
 ""
