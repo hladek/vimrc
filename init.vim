@@ -270,6 +270,9 @@ set hidden
 if has("nvim") || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 nnoremap <Leader>q :Denite buffer<CR>
+else
+Plug 'ctrlpvim/ctrlp.vim'
+nnoremap <Leader>q :CtrlPMixed<CR>
 endif
 
 
