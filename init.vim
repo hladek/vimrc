@@ -269,11 +269,12 @@ set hidden
 
 if has("nvim") || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-nnoremap <Leader>q :Denite buffer<CR>
-else
+endif
+"nnoremap <Leader>q :Denite buffer<CR>
+"else
 Plug 'ctrlpvim/ctrlp.vim'
 nnoremap <Leader>q :CtrlPMixed<CR>
-endif
+"endif
 
 
 """"""""""
@@ -375,8 +376,10 @@ xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
 xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
 xnoremap / <ESC>/<C-R>=VStar()<CR>
 xmap <Leader>/ <plug>(GrepperOperator)
-xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
 
+" Replace in current file
+xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
+nnoremap R :<C-U>%s/<C-R><C-W>/<C-R><C-W>/cg
 """"""
 ""  Tags
 ""
