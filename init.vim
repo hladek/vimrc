@@ -436,14 +436,8 @@ if executable("ctags")
      \ 'sort' : 0
     \ }
 
-
-    Plug 'xolox/vim-easytags'
-    let g:easytags_async = 1
-    let g:easytags_events = ['BufWritePost','BufReadPost']
-    let g:easytags_on_cursorhold = 0
-
-    " For tags in working directory
-    let g:easytags_dynamic_files = 2
+    Plug 'ludovicchabant/vim-gutentags'
+    let g:gutentags_project_root = ['setup.py']
     set tags = "./tags"
     set cpo += "d"
 
