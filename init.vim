@@ -267,9 +267,13 @@ set switchbuf=usetab
 " Hide buffers instead of asking if to save them.
 set hidden
 
+if has("nvim") || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 nnoremap <Leader>q :Denite buffer<CR>
-
+else
+Plug 'ctrlpvim/ctrlp.vim'
+nnoremap <Leader>q :CtrlPMixed<CR>
+endif
 
 
 """"""""""
@@ -310,7 +314,9 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
 " Search live preview
+if has('nvim')
 set inccommand=split
+endif
 
 " Enable search highlighting.
 set hlsearch
@@ -482,7 +488,7 @@ let g:clang_verbose_pmenu = 1
 let g:clang_compilation_database = "./"
 let g:clang_diagsopt = ''   " <- disable diagnostics
 autocmd CompleteDone * pclose
-else
+elseif v:version >= 743
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
