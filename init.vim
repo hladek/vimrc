@@ -273,7 +273,7 @@ endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
 Plug 'ctrlpvim/ctrlp.vim'
-nnoremap <Leader>q :CtrlPMixed<CR>
+nnoremap <Leader>q :CtrlPBuffer<CR>
 "endif
 
 
@@ -520,6 +520,9 @@ endif
 Plug 'hynek/vim-python-pep8-indent'
 "Plug 'vim-scripts/indentpython.vim'
 
+""""""
+" JavaScript Syntax
+Plug 'pangloss/vim-javascript'
 
 """"""""
 "" Text file, TEX and Markdown
