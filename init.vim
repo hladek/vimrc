@@ -438,7 +438,7 @@ if executable("ctags")
 
     Plug 'ludovicchabant/vim-gutentags'
     let g:gutentags_project_root = ['setup.py']
-    set tags = "./tags"
+    set tags=./tags,tags,~/.config/nvim/tags
     set cpo += "d"
 
 endif
@@ -489,6 +489,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
 
+" The command line is used to display echodoc text. This means that you will either need to set noshowmode or set cmdheight=2. Otherwise, the -- INSERT -- mode text will overwrite echodoc's text.
+Plug 'Shougo/echodoc.vim'
 
 """"""""""""""
 """" CPP Editing
