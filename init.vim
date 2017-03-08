@@ -436,9 +436,19 @@ if executable("ctags")
      \ 'sort' : 0
     \ }
 
-    Plug 'ludovicchabant/vim-gutentags'
-    let g:gutentags_project_root = ['setup.py']
+"    Plug 'ludovicchabant/vim-gutentags'
+"    " wildignore affects gutentags root finder !
+"    let g:gutentags_project_root = ['setup.py']
+"
+"    let g:gutentags_file_list_command = {
+"                             \ 'markers': {
+"                                 \ '.git': 'git ls-files',
+"                                 \ '.hg': 'hg files',
+"                                 \ }
+"                            \ } 
+"    let g:gutentags_trace = 1
     set tags=./tags,tags,~/.config/nvim/tags
+    
     set cpo += "d"
 
 endif
@@ -460,10 +470,9 @@ set completeopt=menu
 set laststatus=2
 
 " Disable output, vcs, archive, rails, temp and backup files.
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,bin/**,.git/**,*.lm,*.vocab,*.gz
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+set wildignore=*.lm,*.vocab,*.gz
+set wildignore+=*.o,*.out,*.obj,*.rbc,*.rbo,*.class,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=*.swp,*~,._*
 "set wildmode=longest,list,full
 
