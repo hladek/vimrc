@@ -273,6 +273,11 @@ endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
 Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$\|build\|dist\|venv',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ }
+
 nnoremap <Leader>q :CtrlPBuffer<CR>
 "endif
 
@@ -371,7 +376,7 @@ nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
 
-nnoremap <Leader>8 <ESC>:<C-U>Grepper -noprompt -cword<CR>
+nnoremap <Leader>8 <ESC>:<C-U>Grepper -noprompt -cword -dir file,root<CR>
 xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
 xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
 xnoremap / <ESC>/<C-R>=VStar()<CR>
