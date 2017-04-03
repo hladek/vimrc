@@ -269,11 +269,17 @@ set hidden
 
 if has("nvim") || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-nnoremap <Leader>q :Denite buffer<CR>
-else
-Plug 'ctrlpvim/ctrlp.vim'
-nnoremap <Leader>q :CtrlPMixed<CR>
 endif
+"nnoremap <Leader>q :Denite buffer<CR>
+"else
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$\|build\|dist\|venv',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ }
+
+nnoremap <Leader>q :CtrlPBuffer<CR>
+"endif
 
 
 """"""""""
@@ -370,7 +376,7 @@ nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
 
-nnoremap <Leader>8 <ESC>:<C-U>Grepper -noprompt -cword<CR>
+nnoremap <Leader>8 <ESC>:<C-U>Grepper -noprompt -cword -dir file,root<CR>
 xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
 xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
 xnoremap / <ESC>/<C-R>=VStar()<CR>
@@ -378,6 +384,9 @@ xmap <Leader>/ <plug>(GrepperOperator)
 nnoremap <Leader>/ <ESC>:<C-U>Grepper<CR>
 xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
 
+" Replace in current file
+xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
+nnoremap R :<C-U>%s/<C-R><C-W>/<C-R><C-W>/cg
 """"""
 ""  Tags
 ""
@@ -434,15 +443,19 @@ if executable("ctags")
      \ 'sort' : 0
     \ }
 
-
-    Plug 'xolox/vim-easytags'
-    let g:easytags_async = 1
-    let g:easytags_events = ['BufWritePost','BufReadPost']
-    let g:easytags_on_cursorhold = 0
-
-    " For tags in working directory
-    let g:easytags_dynamic_files = 2
-    set tags = "./tags"
+"    Plug 'ludovicchabant/vim-gutentags'
+"    " wildignore affects gutentags root finder !
+"    let g:gutentags_project_root = ['setup.py']
+"
+"    let g:gutentags_file_list_command = {
+"                             \ 'markers': {
+"                                 \ '.git': 'git ls-files',
+"                                 \ '.hg': 'hg files',
+"                                 \ }
+"                            \ } 
+"    let g:gutentags_trace = 1
+    set tags=./tags,tags,~/.config/nvim/tags
+    
     set cpo += "d"
 
 endif
@@ -464,10 +477,9 @@ set completeopt=menu
 set laststatus=2
 
 " Disable output, vcs, archive, rails, temp and backup files.
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,bin/**,.git/**,*.lm,*.vocab,*.gz
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+set wildignore=*.lm,*.vocab,*.gz
+set wildignore+=*.o,*.out,*.obj,*.rbc,*.rbo,*.class,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 set wildignore+=*.swp,*~,._*
 "set wildmode=longest,list,full
 
@@ -493,6 +505,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
 
+" The command line is used to display echodoc text. This means that you will either need to set noshowmode or set cmdheight=2. Otherwise, the -- INSERT -- mode text will overwrite echodoc's text.
+Plug 'Shougo/echodoc.vim'
 
 """"""""""""""
 """" CPP Editing
@@ -524,6 +538,9 @@ endif
 Plug 'hynek/vim-python-pep8-indent'
 "Plug 'vim-scripts/indentpython.vim'
 
+""""""
+" JavaScript Syntax
+Plug 'pangloss/vim-javascript'
 
 """"""""
 "" Text file, TEX and Markdown
