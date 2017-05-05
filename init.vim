@@ -43,8 +43,8 @@ set notimeout
 """"""""""""""""""""
 " Windows
 """"""""""
-
-nnoremap q :hide<CR>
+Plug 'mhinz/vim-sayonara'
+nnoremap q :Sayonara<CR>
 
 " Set window title by default.
 set title
@@ -384,6 +384,8 @@ xnoremap * <ESC>/<C-R>=VStar()<CR><CR>
 xnoremap # <ESC>?<C-R>=VStar()<CR><CR>
 xnoremap / <ESC>/<C-R>=VStar()<CR>
 xmap <Leader>/ <plug>(GrepperOperator)
+nnoremap <Leader>/ <ESC>:<C-U>Grepper<CR>
+xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
 
 " Replace in current file
 xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
