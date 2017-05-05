@@ -278,6 +278,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll)$',
     \ }
 
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 nnoremap <Leader>q :CtrlPBuffer<CR>
 "endif
 
@@ -285,11 +287,11 @@ nnoremap <Leader>q :CtrlPBuffer<CR>
 """"""""""
 " Quickfix
 "
-Plug 'romainl/vim-qf'
+" Plug 'romainl/vim-qf'
+Plug 'chemzqm/denite-extra'
+" nmap <Leader>x <Plug>QfCtoggle
 
-nmap <Leader>x <Plug>QfCtoggle
-
-nmap <Leader>l <Plug>QfLtoggle
+" nmap <Leader>l <Plug>QfLtoggle
 " Pre quickfix do toho isteho okna
 set switchbuf=useopen
 set hidden
@@ -303,6 +305,7 @@ set hidden
 Plug 'neomake/neomake'
 autocmd! BufWritePost * Neomake
 
+let g:neomake_open_list = 2
 """"""""""""""""
 " Find and replace
 """"""""""""
@@ -512,6 +515,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'justmao945/vim-clang'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
+Plug 'sheerun/vim-polyglot'
 
 """""""""
 " Python
@@ -539,6 +543,13 @@ Plug 'hynek/vim-python-pep8-indent'
 """"""
 " JavaScript Syntax
 Plug 'pangloss/vim-javascript'
+if executable('npm')
+" TODO tern needs to be installed globally
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' }
+if has('nvim')
+Plug 'carlitux/deoplete-ternjs'
+endif
+endif
 
 """"""""
 "" Text file, TEX and Markdown
