@@ -43,8 +43,6 @@ set notimeout
 """"""""""""""""""""
 " Windows
 """"""""""
-Plug 'mhinz/vim-sayonara'
-nnoremap q :Sayonara<CR>
 
 " Set window title by default.
 set title
@@ -302,10 +300,10 @@ set hidden
 " Make and syntax Check
 ""
 
-Plug 'neomake/neomake'
-autocmd! BufWritePost * Neomake
+"Plug 'neomake/neomake'
+" autocmd! BufWritePost * Neomake
 
-let g:neomake_open_list = 2
+" let g:neomake_open_list = 2
 """"""""""""""""
 " Find and replace
 """"""""""""
@@ -519,6 +517,24 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'vim-syntastic/syntastic'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_cpp_checkers = ['cppcheck','gcc']
+
+" let g:neomake_cpp_enabled_makers = ['clangck'']
+" let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
+
+"let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
+let g:neomake_cpp_clangcheck_args = ['-extra-arg', '-fno-modules']
 """""""""
 " Python
 " """""
