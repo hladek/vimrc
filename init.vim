@@ -528,8 +528,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_cpp_checkers = ['cppcheck','gcc']
+let g:syntastic_cpp_checkers = ['cppcheck']
 
+let g:syntastic_cpp_remove_include_errors = 1
 " let g:neomake_cpp_enabled_makers = ['clangck'']
 " let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
 
