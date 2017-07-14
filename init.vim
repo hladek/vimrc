@@ -267,6 +267,11 @@ set hidden
 
 if has("nvim") || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Change mappings.
+" call denite#custom#map('insert','<pageup>','<denite:move_to_next_line>','noremap')
+" call denite#custom#map('insert','<pagedown>','<denite:move_to_previous_line>','noremap')
+
 endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
@@ -512,6 +517,12 @@ Plug 'Shougo/echodoc.vim'
 """"""""""""""
 """" CPP Editing
 """""""""
+if has("autocmd")
+    " Enable file type detection
+    filetype on
+    autocmd BufNewFile,BufRead *.h setfiletype cpp
+endif
+
 Plug 'justmao945/vim-clang'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
@@ -528,14 +539,19 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_checkers = ['cppcheck']
 
+let g:syntastic_cpp_cppcheck_args= ['--std=c11','--language=c++']
 let g:syntastic_cpp_remove_include_errors = 1
 " let g:neomake_cpp_enabled_makers = ['clangck'']
 " let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
 
 "let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
 let g:neomake_cpp_clangcheck_args = ['-extra-arg', '-fno-modules']
+
+let g:neomake_cpp_cppcheck_args= ['--std=c11','--language=c++']
+
 """""""""
 " Python
 " """""
@@ -613,6 +629,9 @@ nnoremap <Leader>= gwip
 
 " For proofreading
 Plug 'reedes/vim-wordy'
+
+
+Plug 'lervag/vimtex'
 
 """"""""""
 "" Status line
