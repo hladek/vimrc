@@ -18,6 +18,11 @@ let g:mapleader = "\<Space>"
 " Disable strange Vi defaults.
 set nocompatible
 
+""" Project specific vimrc
+
+set exrc
+set secure
+
 " Turn on filetype plugins (:help filetype-plugin).
 if has('autocmd')
   filetype plugin indent on
@@ -137,6 +142,8 @@ set expandtab
 ""
 
 Plug 'tpope/vim-repeat'
+
+Plug 'tpope/vim-surround'
 
 " finds next character with fFtT
 
@@ -315,7 +322,7 @@ set hidden
 
 " Fallback to git ls-files for fast listing.
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --vimgrep
 endif
 
 " Auto center on matched string.
