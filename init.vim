@@ -535,29 +535,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'vim-syntastic/syntastic'
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_checkers = ['cppcheck']
-
-let g:syntastic_cpp_cppcheck_args= ['--std=c11','--language=c++']
-let g:syntastic_cpp_remove_include_errors = 1
-" let g:neomake_cpp_enabled_makers = ['clangck'']
-" let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
-
-"let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
-let g:neomake_cpp_clangcheck_args = ['-extra-arg', '-fno-modules']
-
-let g:neomake_cpp_cppcheck_args= ['--std=c11','--language=c++']
+Plug 'w0rp/ale'
+let g:airline#extensions#ale#enabled = 1
 
 """""""""
 " Python
