@@ -4,14 +4,14 @@ call plug#begin()
 " Maintainer:   Adam Stankiewicz <sheerun@sher.pl>
 " Version:      2.0
 
-if exists("g:loaded_vimrc") || &cp
+if exists('g:loaded_vimrc') || &cp
   finish
 else
   let g:loaded_vimrc = 1
 end
 
-let g:maplocalleader = "\\"
-let g:mapleader = "\<Space>"
+let g:maplocalleader = '\\'
+let g:mapleader = '\<Space>'
 
 "" Basics
 
@@ -61,7 +61,7 @@ set splitbelow
 " Shell and Termianl
 " 
 
-if has("nvim")
+if has('nvim')
 " Terminal exit
 tnoremap <Esc> <C-\><C-n>
 endif
@@ -104,7 +104,7 @@ set undofile
 
 " Automatically create directories for backup and undo files.
 if !isdirectory(expand(s:dir))
-  call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
+  call system('mkdir -p ' . expand(s:dir) . '/{backup,undo}')
 end
 
 "let g:netrw_banner = 0
@@ -163,7 +163,7 @@ set nofoldenable
 set backspace=indent,eol,start
 
  " Use Unix as the standard file type
- set ffs=unix,dos,mac
+ set fileformats=unix,dos,mac
 
 set history=700
 " Support all kind of EOLs by default.
@@ -176,12 +176,12 @@ set viminfo='100,f1
 set iskeyword+=-
 
 " Delete comment character when joining commented lines
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
   runtime! macros/matchit.vim
 endif
 
@@ -272,7 +272,7 @@ set switchbuf=usetab
 " Hide buffers instead of asking if to save them.
 set hidden
 
-if has("nvim") || v:version >= 800
+if has('nvim') || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Change mappings.
@@ -291,6 +291,8 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nnoremap <Leader>q :CtrlPBuffer<CR>
+
+nnoremap <TAB> :bn<CR>
 "endif
 
 
@@ -306,16 +308,6 @@ Plug 'chemzqm/denite-extra'
 set switchbuf=useopen
 set hidden
 
-
-
-""""""""""""
-" Make and syntax Check
-""
-
-"Plug 'neomake/neomake'
-" autocmd! BufWritePost * Neomake
-
-" let g:neomake_open_list = 2
 """"""""""""""""
 " Find and replace
 """"""""""""
@@ -368,19 +360,19 @@ Plug 'mhinz/vim-grepper'
 " * # search for visual selection
 "Plug 'bronson/vim-visual-star-search'
 function! Esca(str)
-    let res = escape(a:str, '\*')
-    let res = substitute(res, '\n', '\\n', 'g')
-    let res = substitute(res, '\[', '\\[', 'g')
-    let res = substitute(res, '\~', '\\~', 'g')
-    return res
+    let l:res = escape(a:str, '\*')
+    let l:res = substitute(l:res, '\n', '\\n', 'g')
+    let l:res = substitute(l:res, '\[', '\\[', 'g')
+    let l:res = substitute(l:res, '\~', '\\~', 'g')
+    return l:res
 endfunction
 
 function! VStar()
-    let temp = @"
+    let l:temp = @"
     normal! gvy
-    let res = Esca(@")
-    let @" = temp
-    return res
+    let l:res = Esca(@")
+    let @" = l:temp
+    return l:res
 endfunction
 
 
@@ -409,7 +401,7 @@ set complete-=i
 " Dependency For easytags and pyref
 Plug 'xolox/vim-misc'
 
-if executable("ctags")
+if executable('ctags')
     Plug 'majutsushi/tagbar'
     nnoremap <Leader>o :TagbarOpenAutoClose<CR>
 
@@ -469,7 +461,7 @@ if executable("ctags")
 "    let g:gutentags_trace = 1
     set tags=./tags,tags,~/.config/nvim/tags
     
-    set cpo += "d"
+    set cpoptions += 'd'
 
 endif
 
@@ -502,15 +494,14 @@ set wildmenu
 
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
-if has("nvim")
+if has('nvim')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
 
-
 let g:deoplete#enable_at_startup = 1
 let g:clang_verbose_pmenu = 1
-let g:clang_compilation_database = "./"
+let g:clang_compilation_database = './'
 let g:clang_diagsopt = ''   " <- disable diagnostics
 autocmd CompleteDone * pclose
 elseif v:version >= 743
@@ -518,13 +509,16 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
 
+Plug 'w0rp/ale'
+let g:airline#extensions#ale#enabled = 1
+
 " The command line is used to display echodoc text. This means that you will either need to set noshowmode or set cmdheight=2. Otherwise, the -- INSERT -- mode text will overwrite echodoc's text.
 Plug 'Shougo/echodoc.vim'
 
 """"""""""""""
 """" CPP Editing
 """""""""
-if has("autocmd")
+if has('autocmd')
     " Enable file type detection
     filetype on
     autocmd BufNewFile,BufRead *.h setfiletype cpp
@@ -535,8 +529,6 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'w0rp/ale'
-let g:airline#extensions#ale#enabled = 1
 
 """""""""
 " Python
@@ -544,18 +536,8 @@ let g:airline#extensions#ale#enabled = 1
 
 " Komenty v Pythone
 inoremap # X#
-if executable("flake8")
-let g:neomake_python_flake8_maker = {
-    \ 'args': ['--ignore=E221,E231,E241,E272,E251,W702,E203,E201,E202,E501',  '--format=default'],
-    \ 'errorformat':
-        \ '%E%f:%l: could not compile,%-Z%p^,' .
-        \ '%A%f:%l:%c: %t%n %m,' .
-        \ '%A%f:%l: %t%n %m,' .
-        \ '%-G%.%#',
-    \ }
-let g:neomake_python_enabled_makers = ['flake8']
-endif
-if has("python3")
+
+if has('python3')
 Plug 'davidhalter/jedi-vim'
 endif
 Plug 'hynek/vim-python-pep8-indent'
@@ -575,9 +557,6 @@ endif
 """"""""
 "" Text file, TEX and Markdown
 """"
-
-" Close environent with Ctrl + _
-Plug 'vim-scripts/closeb'
 
 Plug 'beloglazov/vim-online-thesaurus'
 
@@ -642,7 +621,6 @@ let g:airline_theme='jellybeans'
 "let g:airline_section_x = '%{PencilMode()}'
 
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 Plug 'bling/vim-bufferline'
@@ -651,6 +629,7 @@ let g:airline#extensions#bufferline#overwrite_variables = 1
 let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 1
 let g:bufferline_echo = 0
+
 """""""""""
 " View
 
@@ -679,7 +658,7 @@ endif
  set encoding=utf8
 
  " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set scrolloff=7
  "Always show current position
  set ruler
  " Height of the command bar
@@ -716,7 +695,7 @@ set noerrorbells
 set visualbell
 
  set t_vb=
- set tm=500
+ set timeoutlen=500
  " Add a bit extra margin to the left
  set foldcolumn=1
 " Don't display the intro message on starting Vim.
@@ -727,7 +706,7 @@ set display+=lastline
 
 " Wrap lines by default
 set wrap linebreak
-set showbreak=" "
+set showbreak=' '
 
 
 set list          " Display unprintable characters f12 - switches
@@ -740,4 +719,4 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
  " Show matching brackets when text indicator is over them
  set showmatch
  " How many tenths of a second to blink when matching brackets
- set mat=2
+ set matchtime=2
