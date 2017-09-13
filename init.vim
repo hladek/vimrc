@@ -461,7 +461,7 @@ if executable('ctags')
 "    let g:gutentags_trace = 1
     set tags=./tags,tags,~/.config/nvim/tags
     
-    set cpoptions += 'd'
+    set cpoptions += "d"
 
 endif
 
@@ -706,7 +706,7 @@ set display+=lastline
 
 " Wrap lines by default
 set wrap linebreak
-set showbreak=' '
+set showbreak=" "
 
 
 set list          " Display unprintable characters f12 - switches
