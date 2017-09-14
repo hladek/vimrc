@@ -4,19 +4,21 @@ call plug#begin()
 " Maintainer:   Adam Stankiewicz <sheerun@sher.pl>
 " Version:      2.0
 
-if exists('g:loaded_vimrc') || &cp
+
+if exists('g:loaded_vimrc') || &compatible
   finish
 else
   let g:loaded_vimrc = 1
 end
 
 let g:maplocalleader = '\\'
-let g:mapleader = '\<Space>'
+let g:mapleader = ' '
+
 
 "" Basics
 
 " Disable strange Vi defaults.
-set nocompatible
+" set nocompatible
 
 """ Project specific vimrc
 
@@ -90,7 +92,6 @@ set noswapfile
 " Expand %% to path of current buffer in command mode.
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-nnoremap <Leader>w :w<CR>
 
 " Enable saving by `Ctrl-s`
 nnoremap <C-s> :w<CR>
@@ -146,9 +147,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 " finds next character with fFtT
-
 Plug 'dahu/vim-fanfingtastic'
 
+" movement shortcuts after []
 Plug 'tpope/vim-unimpaired'
 
 " Display undotree by UndotreeToggle
