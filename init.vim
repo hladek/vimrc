@@ -509,9 +509,10 @@ elseif v:version >= 743
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 endif
 
-
+if has('nvim') || v:version >= 800
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
+endif
 
 " The command line is used to display echodoc text. This means that you will either need to set noshowmode or set cmdheight=2. Otherwise, the -- INSERT -- mode text will overwrite echodoc's text.
 Plug 'Shougo/echodoc.vim'
@@ -549,7 +550,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'pangloss/vim-javascript'
 if executable('npm')
 " TODO tern needs to be installed globally
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' }
+Plug 'ternjs/tern_for_vim'
 if has('nvim')
 Plug 'carlitux/deoplete-ternjs'
 endif
