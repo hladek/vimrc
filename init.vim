@@ -227,7 +227,9 @@ inoremap <C-v> <F10><C-r>+<F10>
 vnoremap <C-c> "+y
 
 " Blinks on yw, yy ...
+if version >= 740
 Plug 'machakann/vim-highlightedyank'
+endif
 
 " vv to select word and more
 " Ctrl v to select less
