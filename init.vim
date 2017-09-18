@@ -503,9 +503,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
 
 let g:deoplete#enable_at_startup = 1
-let g:clang_verbose_pmenu = 1
-let g:clang_compilation_database = './'
-let g:clang_diagsopt = ''   " <- disable diagnostics
 autocmd CompleteDone * pclose
 elseif v:version >= 743
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -528,7 +525,12 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.h setfiletype cpp
 endif
 
+if executable('clang')
 Plug 'justmao945/vim-clang'
+let g:clang_verbose_pmenu = 1
+let g:clang_compilation_database = './'
+let g:clang_diagsopt = ''   " <- disable diagnostics
+endif
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
