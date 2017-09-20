@@ -227,7 +227,9 @@ inoremap <C-v> <F10><C-r>+<F10>
 vnoremap <C-c> "+y
 
 " Blinks on yw, yy ...
+if version >= 740
 Plug 'machakann/vim-highlightedyank'
+endif
 
 " vv to select word and more
 " Ctrl v to select less
@@ -514,9 +516,10 @@ Plug 'lifepillar/vim-mucomplete'
     set belloff+=ctrlg " If Vim beeps during completion
 endif
 
-
+if has('nvim') || v:version >= 800
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
+endif
 
 " The command line is used to display echodoc text. This means that you will either need to set noshowmode or set cmdheight=2. Otherwise, the -- INSERT -- mode text will overwrite echodoc's text.
 Plug 'Shougo/echodoc.vim'
@@ -530,7 +533,12 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.h setfiletype cpp
 endif
 
+if executable('clang')
 Plug 'justmao945/vim-clang'
+let g:clang_verbose_pmenu = 1
+let g:clang_compilation_database = './'
+let g:clang_diagsopt = ''   " <- disable diagnostics
+endif
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
@@ -554,7 +562,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'pangloss/vim-javascript'
 if executable('npm')
 " TODO tern needs to be installed globally
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' }
+Plug 'ternjs/tern_for_vim'
 if has('nvim')
 Plug 'carlitux/deoplete-ternjs'
 endif
