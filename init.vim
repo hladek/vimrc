@@ -497,16 +497,21 @@ set wildmenu
 set wildmode=longest,full
 if has('nvim')
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
 
-let g:deoplete#enable_at_startup = 1
-let g:clang_verbose_pmenu = 1
-let g:clang_compilation_database = './'
-let g:clang_diagsopt = ''   " <- disable diagnostics
-autocmd CompleteDone * pclose
-elseif v:version >= 743
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    let g:deoplete#enable_at_startup = 1
+    let g:clang_verbose_pmenu = 1
+    let g:clang_compilation_database = './'
+    let g:clang_diagsopt = ''   " <- disable diagnostics
+    autocmd CompleteDone * pclose
+else
+Plug 'lifepillar/vim-mucomplete'
+    set completeopt+=menuone
+    "set completeopt+=noselect
+    set shortmess+=c   " Shut off completion messages
+    set completeopt+=noinsert
+    set belloff+=ctrlg " If Vim beeps during completion
 endif
 
 
