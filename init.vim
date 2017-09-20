@@ -4,19 +4,26 @@ call plug#begin()
 " Maintainer:   Adam Stankiewicz <sheerun@sher.pl>
 " Version:      2.0
 
-if exists("g:loaded_vimrc") || &cp
+
+if exists('g:loaded_vimrc') || &compatible
   finish
 else
   let g:loaded_vimrc = 1
 end
 
-let g:maplocalleader = "\\"
-let g:mapleader = "\<Space>"
+let g:maplocalleader = '\\'
+let g:mapleader = ' '
+
 
 "" Basics
 
 " Disable strange Vi defaults.
-set nocompatible
+" set nocompatible
+
+""" Project specific vimrc
+
+set exrc
+set secure
 
 " Turn on filetype plugins (:help filetype-plugin).
 if has('autocmd')
@@ -56,7 +63,7 @@ set splitbelow
 " Shell and Termianl
 " 
 
-if has("nvim")
+if has('nvim')
 " Terminal exit
 tnoremap <Esc> <C-\><C-n>
 endif
@@ -85,7 +92,6 @@ set noswapfile
 " Expand %% to path of current buffer in command mode.
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-nnoremap <Leader>w :w<CR>
 
 " Enable saving by `Ctrl-s`
 nnoremap <C-s> :w<CR>
@@ -99,7 +105,7 @@ set undofile
 
 " Automatically create directories for backup and undo files.
 if !isdirectory(expand(s:dir))
-  call system("mkdir -p " . expand(s:dir) . "/{backup,undo}")
+  call system('mkdir -p ' . expand(s:dir) . '/{backup,undo}')
 end
 
 "let g:netrw_banner = 0
@@ -138,10 +144,12 @@ set expandtab
 
 Plug 'tpope/vim-repeat'
 
-" finds next character with fFtT
+Plug 'tpope/vim-surround'
 
+" finds next character with fFtT
 Plug 'dahu/vim-fanfingtastic'
 
+" movement shortcuts after []
 Plug 'tpope/vim-unimpaired'
 
 " Display undotree by UndotreeToggle
@@ -156,7 +164,7 @@ set nofoldenable
 set backspace=indent,eol,start
 
  " Use Unix as the standard file type
- set ffs=unix,dos,mac
+ set fileformats=unix,dos,mac
 
 set history=700
 " Support all kind of EOLs by default.
@@ -169,12 +177,12 @@ set viminfo='100,f1
 set iskeyword+=-
 
 " Delete comment character when joining commented lines
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
   runtime! macros/matchit.vim
 endif
 
@@ -220,7 +228,7 @@ vnoremap <C-c> "+y
 
 " Blinks on yw, yy ...
 
-if has("nvim")
+if has("nvim") || version >= 740
 Plug 'machakann/vim-highlightedyank'
 endif
 
@@ -268,8 +276,13 @@ set switchbuf=usetab
 " Hide buffers instead of asking if to save them.
 set hidden
 
-if has("nvim") || v:version >= 800
+if has('nvim') || v:version >= 800
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Change mappings.
+" call denite#custom#map('insert','<pageup>','<denite:move_to_next_line>','noremap')
+" call denite#custom#map('insert','<pagedown>','<denite:move_to_previous_line>','noremap')
+
 endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
@@ -282,6 +295,8 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 nnoremap <Leader>q :CtrlPBuffer<CR>
+
+nnoremap <TAB> :bn<CR>
 "endif
 
 
@@ -297,23 +312,13 @@ Plug 'chemzqm/denite-extra'
 set switchbuf=useopen
 set hidden
 
-
-
-""""""""""""
-" Make and syntax Check
-""
-
-"Plug 'neomake/neomake'
-" autocmd! BufWritePost * Neomake
-
-" let g:neomake_open_list = 2
 """"""""""""""""
 " Find and replace
 """"""""""""
 
 " Fallback to git ls-files for fast listing.
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --vimgrep
 endif
 
 " Auto center on matched string.
@@ -359,19 +364,19 @@ Plug 'mhinz/vim-grepper'
 " * # search for visual selection
 "Plug 'bronson/vim-visual-star-search'
 function! Esca(str)
-    let res = escape(a:str, '\*')
-    let res = substitute(res, '\n', '\\n', 'g')
-    let res = substitute(res, '\[', '\\[', 'g')
-    let res = substitute(res, '\~', '\\~', 'g')
-    return res
+    let l:res = escape(a:str, '\*')
+    let l:res = substitute(l:res, '\n', '\\n', 'g')
+    let l:res = substitute(l:res, '\[', '\\[', 'g')
+    let l:res = substitute(l:res, '\~', '\\~', 'g')
+    return l:res
 endfunction
 
 function! VStar()
-    let temp = @"
+    let l:temp = @"
     normal! gvy
-    let res = Esca(@")
-    let @" = temp
-    return res
+    let l:res = Esca(@")
+    let @" = l:temp
+    return l:res
 endfunction
 
 
@@ -400,7 +405,7 @@ set complete-=i
 " Dependency For easytags and pyref
 Plug 'xolox/vim-misc'
 
-if executable("ctags")
+if executable('ctags')
     Plug 'majutsushi/tagbar'
     nnoremap <Leader>o :TagbarOpenAutoClose<CR>
 
@@ -460,7 +465,7 @@ if executable("ctags")
 "    let g:gutentags_trace = 1
     set tags=./tags,tags,~/.config/nvim/tags
     
-    set cpo += "d"
+    set cpoptions += "d"
 
 endif
 
@@ -493,21 +498,30 @@ set wildmenu
 
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
-if has("nvim")
+if has('nvim')
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
 
-
-let g:deoplete#enable_at_startup = 1
-let g:clang_verbose_pmenu = 1
-let g:clang_compilation_database = "./"
-let g:clang_diagsopt = ''   " <- disable diagnostics
-autocmd CompleteDone * pclose
-elseif v:version >= 743
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    let g:deoplete#enable_at_startup = 1
+    let g:clang_verbose_pmenu = 1
+    let g:clang_compilation_database = './'
+    let g:clang_diagsopt = ''   " <- disable diagnostics
+    autocmd CompleteDone * pclose
+else
+Plug 'lifepillar/vim-mucomplete'
+    set completeopt+=menuone
+    "set completeopt+=noselect
+    "" Shut off completion messages
+    " set shortmess+=c
+    " set completeopt+=noinsert
+    " set belloff+=ctrlg " If Vim beeps during completion
 endif
 
+if has('nvim') || v:version >= 800
+Plug 'w0rp/ale'
+let g:airline#extensions#ale#enabled = 1
+endif
 
 " The command line is used to display echodoc text. This means that you will either need to set noshowmode or set cmdheight=2. Otherwise, the -- INSERT -- mode text will overwrite echodoc's text.
 Plug 'Shougo/echodoc.vim'
@@ -515,48 +529,31 @@ Plug 'Shougo/echodoc.vim'
 """"""""""""""
 """" CPP Editing
 """""""""
+if has('autocmd')
+    " Enable file type detection
+    filetype on
+    autocmd BufNewFile,BufRead *.h setfiletype cpp
+endif
+
+if executable('clang')
 Plug 'justmao945/vim-clang'
+let g:clang_verbose_pmenu = 1
+let g:clang_compilation_database = './'
+let g:clang_diagsopt = ''   " <- disable diagnostics
+endif
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'vim-syntastic/syntastic'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_cpp_checkers = ['cppcheck']
-
-let g:syntastic_cpp_remove_include_errors = 1
-" let g:neomake_cpp_enabled_makers = ['clangck'']
-" let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
-
-"let g:neomake_cpp_clang_args = ['-std=c++14', '-Wextra', '-Wall', '-Wno-unused-parameter', '-g']
-let g:neomake_cpp_clangcheck_args = ['-extra-arg', '-fno-modules']
 """""""""
 " Python
 " """""
 
 " Komenty v Pythone
 inoremap # X#
-if executable("flake8")
-let g:neomake_python_flake8_maker = {
-    \ 'args': ['--ignore=E221,E231,E241,E272,E251,W702,E203,E201,E202,E501',  '--format=default'],
-    \ 'errorformat':
-        \ '%E%f:%l: could not compile,%-Z%p^,' .
-        \ '%A%f:%l:%c: %t%n %m,' .
-        \ '%A%f:%l: %t%n %m,' .
-        \ '%-G%.%#',
-    \ }
-let g:neomake_python_enabled_makers = ['flake8']
-endif
-if has("python3")
+
+if has('python3')
 Plug 'davidhalter/jedi-vim'
 endif
 Plug 'hynek/vim-python-pep8-indent'
@@ -567,7 +564,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'pangloss/vim-javascript'
 if executable('npm')
 " TODO tern needs to be installed globally
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install tern' }
+Plug 'ternjs/tern_for_vim'
 if has('nvim')
 Plug 'carlitux/deoplete-ternjs'
 endif
@@ -576,9 +573,6 @@ endif
 """"""""
 "" Text file, TEX and Markdown
 """"
-
-" Close environent with Ctrl + _
-Plug 'vim-scripts/closeb'
 
 Plug 'beloglazov/vim-online-thesaurus'
 
@@ -617,6 +611,9 @@ nnoremap <Leader>= gwip
 " For proofreading
 Plug 'reedes/vim-wordy'
 
+
+Plug 'lervag/vimtex'
+
 """"""""""
 "" Status line
 """""
@@ -640,7 +637,6 @@ let g:airline_theme='jellybeans'
 "let g:airline_section_x = '%{PencilMode()}'
 
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 Plug 'bling/vim-bufferline'
@@ -649,6 +645,7 @@ let g:airline#extensions#bufferline#overwrite_variables = 1
 let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 1
 let g:bufferline_echo = 0
+
 """""""""""
 " View
 
@@ -677,7 +674,7 @@ endif
  set encoding=utf8
 
  " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set scrolloff=7
  "Always show current position
  set ruler
  " Height of the command bar
@@ -714,7 +711,7 @@ set noerrorbells
 set visualbell
 
  set t_vb=
- set tm=500
+ set timeoutlen=500
  " Add a bit extra margin to the left
  set foldcolumn=1
 " Don't display the intro message on starting Vim.
@@ -738,4 +735,4 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
  " Show matching brackets when text indicator is over them
  set showmatch
  " How many tenths of a second to blink when matching brackets
- set mat=2
+ set matchtime=2
