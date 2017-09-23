@@ -276,13 +276,15 @@ set switchbuf=usetab
 " Hide buffers instead of asking if to save them.
 set hidden
 
-if has('nvim') || v:version >= 800
+if has('nvim') 
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
+elif  v:version >= 800
+Plug 'Shougo/denite.nvim'
+endif
+if has('nvim') || v:version >= 800
 " Change mappings.
 " call denite#custom#map('insert','<pageup>','<denite:move_to_next_line>','noremap')
 " call denite#custom#map('insert','<pagedown>','<denite:move_to_previous_line>','noremap')
-
 endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
