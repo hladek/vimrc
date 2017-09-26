@@ -564,8 +564,7 @@ Plug 'hynek/vim-python-pep8-indent'
 """"""
 " JavaScript Syntax
 Plug 'pangloss/vim-javascript'
-if executable('npm')
-" TODO tern needs to be installed globally
+if executable('tern')
 Plug 'ternjs/tern_for_vim'
 if has('nvim')
 Plug 'carlitux/deoplete-ternjs'
