@@ -278,7 +278,7 @@ set hidden
 
 if has('nvim') 
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-elif  v:version >= 800
+elseif  v:version >= 800
 Plug 'Shougo/denite.nvim'
 endif
 if has('nvim') || v:version >= 800
@@ -589,7 +589,7 @@ nmap ga <Plug>(EasyAlign)
 Plug 'reedes/vim-lexical'
 augroup lexical
   autocmd!
-  autocmd FileType markdown,mkd,md call lexical#init()
+  autocmd FileType markdown,mkd,md,asciidoc call lexical#init()
   autocmd FileType tex call lexical#init()
   autocmd FileType text call lexical#init({ 'spell': 0 })
 "  autocmd FileType markdown,mkd,md call pencil#init()
@@ -604,8 +604,6 @@ augroup END
 let g:lexical#thesaurus = ['~/.config/nvim/mthesaur.txt',]
 let g:lexical#thesaurus_key = '<leader>t'
 
-au Filetype tex set makeprg=latexmk\ -f\ -pdf\ %
-au Filetype bib set makeprg=latexmk\ -f\ -pdf\ %
 "Reformat paragraph endlines
 nnoremap <Leader>= gwip
 
