@@ -548,7 +548,8 @@ endif
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'sheerun/vim-polyglot'
-
+" Polyglot includes Latex-Box which is in conflict with vimtex
+let g:polyglot_disabled = ['latex']
 
 """""""""
 " Python
