@@ -277,13 +277,15 @@ set switchbuf=usetab
 " Hide buffers instead of asking if to save them.
 set hidden
 
-if has('nvim') || v:version >= 800
+if has('nvim') 
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
+elseif  v:version >= 800
+Plug 'Shougo/denite.nvim'
+endif
+if has('nvim') || v:version >= 800
 " Change mappings.
 " call denite#custom#map('insert','<pageup>','<denite:move_to_next_line>','noremap')
 " call denite#custom#map('insert','<pagedown>','<denite:move_to_previous_line>','noremap')
-
 endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
@@ -564,8 +566,7 @@ Plug 'hynek/vim-python-pep8-indent'
 """"""
 " JavaScript Syntax
 Plug 'pangloss/vim-javascript'
-if executable('npm')
-" TODO tern needs to be installed globally
+if executable('tern')
 Plug 'ternjs/tern_for_vim'
 if has('nvim')
 Plug 'carlitux/deoplete-ternjs'
@@ -590,7 +591,7 @@ nmap ga <Plug>(EasyAlign)
 Plug 'reedes/vim-lexical'
 augroup lexical
   autocmd!
-  autocmd FileType markdown,mkd,md call lexical#init()
+  autocmd FileType markdown,mkd,md,asciidoc call lexical#init()
   autocmd FileType tex call lexical#init()
   autocmd FileType text call lexical#init({ 'spell': 0 })
 "  autocmd FileType markdown,mkd,md call pencil#init()
@@ -605,8 +606,6 @@ augroup END
 let g:lexical#thesaurus = ['~/.config/nvim/mthesaur.txt',]
 let g:lexical#thesaurus_key = '<leader>t'
 
-au Filetype tex set makeprg=latexmk\ -f\ -pdf\ %
-au Filetype bib set makeprg=latexmk\ -f\ -pdf\ %
 "Reformat paragraph endlines
 nnoremap <Leader>= gwip
 
