@@ -191,10 +191,11 @@ endif
 " Binary file editing
 Plug 'Shougo/vinarise.vim'
 
+
 """"""""
 " REST console in REST filetype
 ":set ft=rest
-Plug 'diepm/vim-rest-console'
+" Plug 'diepm/vim-rest-console'
 
 
 """" """"""""""
@@ -519,6 +520,7 @@ Plug 'lifepillar/vim-mucomplete'
 endif
 
 if has('nvim') || v:version >= 800
+" Calls linter and sytax check
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 endif
@@ -573,7 +575,7 @@ endif
 """"""""
 "" Text file, TEX and Markdown
 """"
-
+" OnlineThesaurusCurrentWord
 Plug 'beloglazov/vim-online-thesaurus'
 
 " Hlavne dobre na robenie tabuliek
@@ -614,6 +616,8 @@ Plug 'reedes/vim-wordy'
 
 Plug 'lervag/vimtex'
 
+
+Plug 'vim-scripts/Drawit'
 """"""""""
 "" Status line
 """""
