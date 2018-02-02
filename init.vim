@@ -504,7 +504,8 @@ set wildmode=longest,full
 if has('nvim')
 
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
+" Makes ome problems
+"    Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
 
     let g:deoplete#enable_at_startup = 1
     let g:clang_verbose_pmenu = 1
