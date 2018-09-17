@@ -1,59 +1,37 @@
 # vimrc
-My Neovim config for editing  C++, Python, Latex, Markdown and others
+
+My Neovim config for editing  C++, Python, Latex, JavaScript Markdown and others
 
 # Features
 
-Optimized for NeoVim
-
-Editing of:
-- Python3
-- C++
-- Latex
-- Markdown
-- Bibtex
-
-- Outline
-- CTags
-- Code Completion
-- Easy Buffer Switching
-- Remembers last edit location
-
+- Color scheme
+- Code highlighting
+- Completion
+- Search and replace
+- Buffer switching
+- Various plugins by managed by Plug
 
 # Dependencies
 
 Recent Vim with +python3
-- Jedi for Python
-- Flake8 (syntax check for python)
-- lacheck (syntax check for Latex)
-- latexmk for making Latex
-- Git
-
-# Plugins
-
-- Unite
-    - MRU
-    - Outline
-    - Quickfix, LocationList
-- EasyGrep
-- Neomake
-- Deoplete
-    - Jedi
-    - Vim Clang
-- EasyTags
-- Airline
-- Fugitive
-- VimPlug
 
 # Key Mappings
 
-<Leader>: space
-
-<Leader> w : Save File
-<Leader> o : Open file outline
 <Leader> q : Buffer Switch and Recent Files
-<Leader> x : Quickfix in Unite
+R : search and replace
 
-# Installation
+# Installation in Vim
 
-1. Backup your old config
-1. View and run install-nvim.sh
+1. Switch to your home directory. 
+1. `git clone https://github.com/hladek/vimrc ~/.vim`
+1. Create symlink to .vimrc: `ln -s ~/.vim/init.vim ~/.vimrc`
+1. Run `vim`
+1. Install plugins in vim `:PlugInstall`
+
+# Instalation in NeoVim
+
+
+1. `git clone https://github.com/hladek/vimrc ~/.config/nvim`
+1. Install plugins `:PlugInstall`
+
+
