@@ -116,9 +116,9 @@ end
 "
 "nnoremap <Leader>f :Vexplore<CR>
 
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 
-nnoremap <Leader>f :NERDTree<CR>
+"nnoremap <Leader>f :NERDTree<CR>
 """"""""""""""
 " Indent
 ""
@@ -147,13 +147,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 " finds next character with fFtT
-Plug 'dahu/vim-fanfingtastic'
+" Plug 'dahu/vim-fanfingtastic'
 
 " movement shortcuts after []
 Plug 'tpope/vim-unimpaired'
 
 " Display undotree by UndotreeToggle
-Plug 'mbbill/undotree'
+"Plug 'mbbill/undotree'
 
 " Do not fold by default. But if, do it up to 3 levels.
 set foldmethod=indent
@@ -182,9 +182,9 @@ if v:version > 703 || v:version == 703 && has('patch541')
 endif
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
-  runtime! macros/matchit.vim
-endif
+"if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
+"  runtime! macros/matchit.vim
+"endif
 
 
 """"""""""""""""
@@ -235,10 +235,10 @@ endif
 
 " vv to select word and more
 " Ctrl v to select less
-Plug 'terryma/vim-expand-region'
+"Plug 'terryma/vim-expand-region'
 " Expand selection by v (uses text objects)
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+"vmap v <Plug>(expand_region_expand)
+"vmap <C-v> <Plug>(expand_region_shrink)
 
 "" Default clipboard
 if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
@@ -248,24 +248,24 @@ endif
 
 """"
 " Text Objects
-Plug 'kana/vim-textobj-line'
-Plug 'kana/vim-textobj-user'
+"Plug 'kana/vim-textobj-line'
+"Plug 'kana/vim-textobj-user'
 " Latex
 "    im: inside math environment. Recognizes $, \[ ... \], \( ... \). Usable as vim, cim, etc.
 "    ie: inside environment. Recognizes matching \begin and \end tags.
 "    %: jump around between matched begin/end blocks. If the current line does not have one, use default % motion. Works in visual mode.
-Plug 'gibiansky/vim-latex-objects'
+"Plug 'gibiansky/vim-latex-objects'
 " i – the current indentation level and the line above
 " ii – the current indentation level excluding the line above 
-Plug 'michaeljsmith/vim-indent-object'
+"Plug 'michaeljsmith/vim-indent-object'
 
 
 " Make a simple "search" text object.
 " http://vim.wikia.com/wiki/Copy_or_change_search_hit
 " It allows for replacing search matches with cs and then /././.
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
+"vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+"    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+"omap s :normal vs<CR>
 
 """""""""""""""
 " Buffer and File switch
@@ -289,17 +289,17 @@ if has('nvim') || v:version >= 800
 endif
 "nnoremap <Leader>q :Denite buffer<CR>
 "else
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$\|build\|dist\|venv',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ }
+"Plug 'ctrlpvim/ctrlp.vim'
+"let g:ctrlp_custom_ignore = {
+"    \ 'dir':  '\v[\/]\.(git|hg|svn)$\|build\|dist\|venv',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"    \ }
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-nnoremap <Leader>q :CtrlPBuffer<CR>
+"nnoremap <Leader>q :CtrlPBuffer<CR>
 
-nnoremap <TAB> :bn<CR>
+"nnoremap <TAB> :bn<CR>
 "endif
 
 
@@ -307,7 +307,7 @@ nnoremap <TAB> :bn<CR>
 " Quickfix
 "
 " Plug 'romainl/vim-qf'
-Plug 'chemzqm/denite-extra'
+"Plug 'chemzqm/denite-extra'
 " nmap <Leader>x <Plug>QfCtoggle
 
 " nmap <Leader>l <Plug>QfLtoggle
@@ -360,7 +360,7 @@ set smartcase
  " For regular expressions turn magic on
  set magic
 
-Plug 'mhinz/vim-grepper'
+"Plug 'mhinz/vim-grepper'
 " <Leader>vv grep for word under cursor
 
 
@@ -399,6 +399,7 @@ xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
 " Replace in current file
 xnoremap R <ESC>:<C-U>%s/<C-R>=VStar()<CR>/<C-R>=VStar()<CR>/cg
 nnoremap R :<C-U>%s/<C-R><C-W>/<C-R><C-W>/cg
+
 """"""
 ""  Tags
 ""
@@ -568,22 +569,22 @@ Plug 'hynek/vim-python-pep8-indent'
 """"""
 " JavaScript Syntax
 Plug 'pangloss/vim-javascript'
-if executable('tern')
-Plug 'ternjs/tern_for_vim'
-if has('nvim')
-Plug 'carlitux/deoplete-ternjs'
-endif
-endif
+"if executable('tern')
+"Plug 'ternjs/tern_for_vim'
+"if has('nvim')
+"Plug 'carlitux/deoplete-ternjs'
+"endif
+"endif
 
 """"""""
 "" Text file, TEX and Markdown
 """"
 " OnlineThesaurusCurrentWord
-Plug 'beloglazov/vim-online-thesaurus'
+"Plug 'beloglazov/vim-online-thesaurus'
 
 " Hlavne dobre na robenie tabuliek
 " oznacit ga& zarovna okolo &
-Plug 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -612,13 +613,13 @@ let g:lexical#thesaurus_key = '<leader>t'
 nnoremap <Leader>= gwip
 
 " For proofreading
-Plug 'reedes/vim-wordy'
+"Plug 'reedes/vim-wordy'
 
 
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
 
 
-Plug 'vim-scripts/Drawit'
+"Plug 'vim-scripts/Drawit'
 """"""""""
 "" Status line
 """""
