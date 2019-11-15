@@ -560,7 +560,10 @@ let g:polyglot_disabled = ['latex']
 " Komenty v Pythone
 inoremap # X#
 
-if has('python3')
+if has('nvim')
+" Jedi= problems vim + miniconda
+" https://github.com/davidhalter/jedi-vim/issues/907
+let $VIRTUAL_ENV = $CONDA_PREFIX
 Plug 'davidhalter/jedi-vim'
 endif
 Plug 'hynek/vim-python-pep8-indent'
