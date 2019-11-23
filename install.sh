@@ -2,7 +2,7 @@
 set -e
 
 # Do cleanup - move old configs
-if [ -d ~/config/nvim ]
+if [ -d ~/.config/nvim ]
 then
 	echo Moving old nvim config to ~/oldnvim
 	mv ~/.config/nvim ~/oldnvim
@@ -10,7 +10,12 @@ fi
 if [ -d ~/.vim ]
 then
 	echo Moving old vim config to ~/oldvim
-	mv ~/.config/nvim ~/oldnvim
+	mv ~/.vim ~/oldvim
+fi
+if [ -f ~/.vimrc ]
+then
+	echo Moving old vimrc config to ~/oldvim
+	mv ~/.vimrc ~/oldvim
 fi
 if [ -h ~/.vim ]
 then
