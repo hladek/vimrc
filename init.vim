@@ -690,7 +690,11 @@ set scrolloff=7
  set cmdheight=2
 " Sets how many lines of history VIM has to remember
 " TODO - error on first start
-colorscheme jellybeans
+try
+    colorscheme jellybeans
+catch /^Vim\%((\a\+)\)\=:E185/
+    " deal with it
+endtry
 set guifont=Monospace\ 13
 set t_Co=256
 
