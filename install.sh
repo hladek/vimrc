@@ -17,6 +17,7 @@ then
 	echo Moving old vimrc config to ~/oldvim
 	mv ~/.vimrc ~/oldvim
 fi
+# Removing old symlinks
 if [ -h ~/.vim ]
 then
 	rm ~/.vim
@@ -25,13 +26,14 @@ if [ -h ~/.vimrc ]
 then
 	rm ~/.vimrc
 fi
-
+# Copying files
 mkdir -p ~/.config/
 git clone https://github.com/hladek/vimrc ~/.config/nvim
-echo Installed Dano Config into ~/.config/nvim
+echo Copied Dano Config into ~/.config/nvim
 ln -s -T ~/.config/nvim ~/.vim
 ln -s -T ~/.config/nvim/init.vim ~/.vimrc
 echo Prepared Symlinks for VIM
+echo Installing plugins
 
 if hash vim 2>/dev/null;
 then
@@ -42,3 +44,5 @@ if hash nvim 2>/dev/null;
 then
 	nvim +'PlugInstall --sync' +qa
 fi
+echo Dano Config is installed
+echo you can edit ~/.config/nvim/init.vim
