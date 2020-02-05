@@ -549,9 +549,9 @@ let g:clang_diagsopt = ''   " <- disable diagnostics
 endif
 Plug 'octol/vim-cpp-enhanced-highlight'
 
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 " Polyglot includes Latex-Box which is in conflict with vimtex
-let g:polyglot_disabled = ['latex']
+"let g:polyglot_disabled = ['latex']
 
 """""""""
 " Python
@@ -648,12 +648,12 @@ let g:airline_theme='jellybeans'
 set statusline+=%#warningmsg#
 set statusline+=%*
 
-Plug 'bling/vim-bufferline'
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
-let g:bufferline_show_bufnr = 0
-let g:bufferline_rotate = 1
-let g:bufferline_echo = 0
+""Plug 'bling/vim-bufferline'
+""let g:airline#extensions#bufferline#enabled = 1
+""let g:airline#extensions#bufferline#overwrite_variables = 1
+""let g:bufferline_show_bufnr = 0
+""let g:bufferline_rotate = 1
+""let g:bufferline_echo = 0
 
 """""""""""
 " View
