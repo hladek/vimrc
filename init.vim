@@ -502,18 +502,18 @@ set wildmenu
 
 " For autocompletion, complete as much as you can.
 set wildmode=longest,full
-if has('nvim')
-
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Makes ome problems
-"    Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
-
-    let g:deoplete#enable_at_startup = 1
-    let g:clang_verbose_pmenu = 1
-    let g:clang_compilation_database = './'
-    let g:clang_diagsopt = ''   " <- disable diagnostics
-    autocmd CompleteDone * pclose
-else
+"if has('nvim')
+"
+"    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"" Makes ome problems
+""    Plug 'Shougo/neoinclude.vim',{ 'tag': '*' }
+"
+"    let g:deoplete#enable_at_startup = 1
+"    let g:clang_verbose_pmenu = 1
+"    let g:clang_compilation_database = './'
+"    let g:clang_diagsopt = ''   " <- disable diagnostics
+"    autocmd CompleteDone * pclose
+"else
 Plug 'lifepillar/vim-mucomplete'
     set completeopt+=menuone
     "set completeopt+=noselect
@@ -521,7 +521,7 @@ Plug 'lifepillar/vim-mucomplete'
     " set shortmess+=c
     " set completeopt+=noinsert
     " set belloff+=ctrlg " If Vim beeps during completion
-endif
+"endif
 
 if has('nvim') || v:version >= 800
 " Calls linter and sytax check
@@ -594,23 +594,23 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-Plug 'reedes/vim-lexical'
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd,md,asciidoc call lexical#init()
-  autocmd FileType tex call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-"  autocmd FileType markdown,mkd,md call pencil#init()
-"  autocmd FileType tex call pencil#init()
-"  autocmd FileType text         call pencil#init()
-augroup END
+"Plug 'reedes/vim-lexical'
+"augroup lexical
+"  autocmd!
+"  autocmd FileType markdown,mkd,md,asciidoc call lexical#init()
+"  autocmd FileType tex call lexical#init()
+"  autocmd FileType text call lexical#init({ 'spell': 0 })
+""  autocmd FileType markdown,mkd,md call pencil#init()
+""  autocmd FileType tex call pencil#init()
+""  autocmd FileType text         call pencil#init()
+"augroup END
 
 " [s next bad word
 " z= suggests correction
 " set spelllang=sk Nastavi jazyk na spellovanie
 
-let g:lexical#thesaurus = ['~/.config/nvim/mthesaur.txt',]
-let g:lexical#thesaurus_key = '<leader>t'
+"let g:lexical#thesaurus = ['~/.config/nvim/mthesaur.txt',]
+"let g:lexical#thesaurus_key = '<leader>t'
 
 "Reformat paragraph endlines
 nnoremap <Leader>= gwip
@@ -733,8 +733,6 @@ set shortmess+=I
 " When 'wrap' is on, display last line even if it doesn't fit.
 set display+=lastline
 
-" Wrap lines by default
-set wrap linebreak
 set showbreak=" "
 
 
